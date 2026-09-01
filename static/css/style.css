@@ -1,0 +1,4599 @@
+/* ==========================================================
+   AYAN AI
+   STYLE.CSS
+   PREMIUM DARK CHAT UI
+========================================================== */
+
+
+/* ==========================================================
+   GLOBAL
+========================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    background:
+        radial-gradient(
+            circle at 50% -20%,
+            rgba(255, 255, 255, 0.055),
+            transparent 38%
+        ),
+        radial-gradient(
+            circle at 10% 100%,
+            rgba(100, 110, 140, 0.04),
+            transparent 35%
+        ),
+        #050505;
+
+    color: #f5f5f5;
+
+    height: 100vh;
+    overflow: hidden;
+}
+
+
+/* ==========================================================
+   APP LAYOUT
+========================================================== */
+
+.app {
+    width: 100%;
+    height: 100vh;
+
+    display: flex;
+
+    overflow: hidden;
+}
+
+
+/* ==========================================================
+   CRYSTALLIC BLACK SIDEBAR
+========================================================== */
+
+.sidebar {
+    width: 270px;
+    min-width: 270px;
+    height: 100vh;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(30, 30, 32, 0.98),
+            rgba(7, 7, 8, 0.99) 48%,
+            rgba(18, 18, 20, 0.98)
+        );
+
+    padding: 25px;
+
+    display: flex;
+    flex-direction: column;
+
+    border-right:
+        1px solid rgba(255, 255, 255, 0.10);
+
+    overflow: hidden;
+
+    box-shadow:
+        8px 0 35px rgba(0, 0, 0, 0.45),
+        inset -1px 0 0 rgba(255, 255, 255, 0.035),
+        inset 0 1px 0 rgba(255, 255, 255, 0.045);
+}
+/* ==========================================================
+   LOGO
+========================================================== */
+
+.logo {
+    font-size: 28px;
+
+    margin-bottom: 25px;
+
+    font-weight: bold;
+
+    letter-spacing: 1px;
+
+    user-select: none;
+}
+
+
+/* ==========================================================
+   NEW CHAT
+========================================================== */
+
+.new-chat {
+    width: 100%;
+
+    padding: 14px;
+
+    border: none;
+
+    border-radius: 14px;
+
+    cursor: pointer;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    margin-bottom: 25px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #4f46e5,
+            #2563eb
+        );
+
+    color: white;
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease,
+        filter .25s ease;
+
+    box-shadow:
+        0 8px 20px
+        rgba(37, 99, 235, .25);
+}
+
+.new-chat:hover {
+    transform: translateY(-3px);
+
+    filter: brightness(1.08);
+
+    box-shadow:
+        0 15px 30px
+        rgba(37, 99, 235, .35);
+}
+
+.new-chat:active {
+    transform: scale(.97);
+}
+
+
+/* ==========================================================
+   CHAT LIST
+========================================================== */
+
+.menu {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 8px;
+
+    overflow-y: auto;
+
+    scrollbar-width: thin;
+
+    scrollbar-color:
+        #334155
+        transparent;
+}
+
+
+/* ==========================================================
+   CHAT ITEM
+========================================================== */
+
+.chat-item {
+    width: 100%;
+
+    min-height: 48px;
+
+    padding: 12px 10px;
+
+    border-radius: 12px;
+
+    cursor: pointer;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 8px;
+
+    color: #dbe4f0;
+
+    transition:
+        background .2s ease,
+        transform .2s ease,
+        color .2s ease;
+}
+
+.chat-item:hover {
+    background:
+        rgba(255, 255, 255, .06);
+
+    transform:
+        translateX(4px);
+
+    color: white;
+}
+
+.chat-item span {
+    overflow: hidden;
+
+    white-space: nowrap;
+
+    text-overflow: ellipsis;
+
+    flex: 1;
+}
+
+
+/* ==========================================================
+   DELETE CHAT
+========================================================== */
+
+.delete-chat {
+    flex-shrink: 0;
+
+    width: 30px;
+    height: 30px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: transparent;
+
+    color: #94a3b8;
+
+    cursor: pointer;
+
+    opacity: .6;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    transition:
+        background .2s ease,
+        color .2s ease,
+        opacity .2s ease,
+        transform .2s ease;
+}
+
+.delete-chat:hover {
+    background:
+        rgba(239, 68, 68, .15);
+
+    color:
+        #f87171;
+
+    opacity: 1;
+
+    transform: scale(1.08);
+}
+
+
+/* ==========================================================
+   SIDEBAR HR
+========================================================== */
+
+.sidebar hr {
+    width: 100%;
+
+    border: none;
+
+    border-top:
+        1px solid #293548;
+
+    margin: 20px 0;
+}
+
+
+/* ==========================================================
+   BOTTOM MENU
+========================================================== */
+
+.bottom-menu {
+    margin-top: auto;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+
+/* ==========================================================
+   MENU ITEMS
+========================================================== */
+
+.menu-item {
+    padding: 12px 10px;
+
+    border-radius: 12px;
+
+    cursor: pointer;
+
+    color: #cbd5e1;
+
+    transition:
+        background .2s ease,
+        transform .2s ease,
+        color .2s ease;
+}
+
+.menu-item:hover {
+    background:
+        rgba(255, 255, 255, .06);
+
+    transform:
+        translateX(4px);
+
+    color: white;
+}
+
+
+/* ==========================================================
+   MAIN
+========================================================== */
+
+.main {
+    position: relative;
+
+    flex: 1;
+
+    min-width: 0;
+
+    height: 100vh;
+
+    display: flex;
+
+    flex-direction: column;
+
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(79, 70, 229, .08),
+            transparent 35%
+        ),
+        #0f172a;
+
+    overflow: hidden;
+}
+
+
+/* ==========================================================
+   CHAT AREA
+========================================================== */
+
+.chat-area {
+    position: relative;
+
+    flex: 1;
+
+    min-height: 0;
+
+    width: 100%;
+
+    padding:
+        35px
+        35px
+        120px
+        35px;
+
+    overflow-y: auto;
+
+    overflow-x: hidden;
+
+    display: flex;
+
+    flex-direction: column;
+
+    scroll-behavior: smooth;
+
+    scrollbar-width: thin;
+
+    scrollbar-color:
+        #334155
+        transparent;
+}
+
+
+/* ==========================================================
+   CHAT SCROLLBAR
+========================================================== */
+
+.chat-area::-webkit-scrollbar,
+.menu::-webkit-scrollbar {
+    width: 7px;
+}
+
+.chat-area::-webkit-scrollbar-track,
+.menu::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.chat-area::-webkit-scrollbar-thumb,
+.menu::-webkit-scrollbar-thumb {
+    background:
+        #334155;
+
+    border-radius: 10px;
+}
+
+.chat-area::-webkit-scrollbar-thumb:hover,
+.menu::-webkit-scrollbar-thumb:hover {
+    background:
+        #475569;
+}
+
+
+/* ==========================================================
+   WELCOME
+========================================================== */
+
+.welcome {
+    width: 100%;
+
+    max-width: 700px;
+
+    margin:
+        auto;
+
+    text-align: center;
+
+    padding: 40px 20px;
+}
+
+.welcome h1 {
+    font-size: 48px;
+
+    margin-bottom: 18px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffffff,
+            #93c5fd,
+            #a5b4fc
+        );
+
+    -webkit-background-clip: text;
+
+    background-clip: text;
+
+    color: transparent;
+}
+
+.welcome p {
+    font-size: 18px;
+
+    color: #94a3b8;
+
+    margin-bottom: 40px;
+}
+
+
+/* ==========================================================
+   SUGGESTIONS
+========================================================== */
+
+.suggestions {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 15px;
+
+    flex-wrap: wrap;
+}
+
+.suggestions button {
+    padding:
+        15px 22px;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, .07);
+
+    border-radius: 14px;
+
+    background:
+        rgba(30, 41, 59, .75);
+
+    backdrop-filter:
+        blur(10px);
+
+    color: white;
+
+    cursor: pointer;
+
+    font-size: 15px;
+
+    transition:
+        transform .25s ease,
+        background .25s ease,
+        box-shadow .25s ease,
+        border-color .25s ease;
+}
+
+.suggestions button:hover {
+    background:
+        rgba(51, 65, 85, .9);
+
+    transform:
+        translateY(-4px);
+
+    border-color:
+        rgba(147, 197, 253, .2);
+
+    box-shadow:
+        0 10px 25px
+        rgba(0, 0, 0, .25);
+}
+
+.suggestions button:active {
+    transform:
+        scale(.96);
+}
+
+
+/* ==========================================================
+   MESSAGE
+========================================================== */
+
+.message {
+    position: relative;
+
+    width: fit-content;
+
+    max-width: min(75%, 850px);
+
+    padding:
+        16px 20px;
+
+    border-radius: 18px;
+
+    margin:
+        10px 0;
+
+    line-height: 1.6;
+
+    word-wrap: break-word;
+
+    overflow-wrap: anywhere;
+
+    animation:
+        messageAppear
+        .3s
+        ease-out;
+}
+
+
+/* ==========================================================
+   MESSAGE HEADER
+========================================================== */
+
+.message strong {
+    display: inline-block;
+
+    margin-bottom: 8px;
+
+    font-size: 14px;
+
+    opacity: .85;
+}
+
+
+/* ==========================================================
+   MESSAGE TIME
+========================================================== */
+
+.message-time {
+    font-size: 11px;
+
+    opacity: .45;
+
+    margin-left: 8px;
+
+    font-weight: normal;
+
+    vertical-align: middle;
+}
+
+
+/* ==========================================================
+   USER MESSAGE
+========================================================== */
+
+.message.user {
+    align-self: flex-end;
+
+    background:
+        linear-gradient(
+            135deg,
+            #2563eb,
+            #4f46e5
+        );
+
+    color: white;
+
+    margin-left: auto;
+
+    border-bottom-right-radius: 6px;
+
+    box-shadow:
+        0 8px 25px
+        rgba(37, 99, 235, .12);
+}
+
+
+/* ==========================================================
+   AI MESSAGE
+========================================================== */
+
+.message.ai {
+    align-self: flex-start;
+
+    background:
+        rgba(30, 41, 59, .9);
+
+    color: white;
+
+    margin-right: auto;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, .04);
+
+    border-bottom-left-radius: 6px;
+
+    box-shadow:
+        0 8px 25px
+        rgba(0, 0, 0, .12);
+}
+
+
+/* ==========================================================
+   MESSAGE ANIMATION
+========================================================== */
+
+@keyframes messageAppear {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(12px)
+            scale(.98);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+
+/* ==========================================================
+   MARKDOWN
+========================================================== */
+
+.markdown-body {
+    width: 100%;
+
+    line-height: 1.7;
+}
+
+.markdown-body p {
+    margin:
+        8px 0;
+}
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3 {
+    margin:
+        18px 0 10px;
+}
+
+.markdown-body ul,
+.markdown-body ol {
+    padding-left: 22px;
+
+    margin:
+        10px 0;
+}
+
+.markdown-body li {
+    margin:
+        5px 0;
+}
+
+.markdown-body a {
+    color:
+        #93c5fd;
+}
+
+.markdown-body blockquote {
+    margin:
+        12px 0;
+
+    padding:
+        10px 15px;
+
+    border-left:
+        3px solid
+        #6366f1;
+
+    background:
+        rgba(255, 255, 255, .04);
+
+    border-radius:
+        6px;
+}
+
+
+/* ==========================================================
+   CODE BLOCKS
+========================================================== */
+
+.markdown-body pre {
+    margin:
+        14px 0;
+
+    padding:
+        16px;
+
+    background:
+        #0b1120;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, .07);
+
+    border-radius:
+        12px;
+
+    overflow-x: auto;
+
+    box-shadow:
+        inset 0 0 20px
+        rgba(0, 0, 0, .15);
+}
+
+.markdown-body code {
+    font-family:
+        Consolas,
+        Monaco,
+        "Courier New",
+        monospace;
+}
+
+.markdown-body :not(pre) > code {
+    padding:
+        2px 6px;
+
+    border-radius:
+        6px;
+
+    background:
+        rgba(255, 255, 255, .07);
+}
+
+
+/* ==========================================================
+   AI TEXT REVEAL
+========================================================== */
+
+.ai .markdown-body {
+    animation:
+        aiTextReveal
+        .35s
+        ease-out;
+}
+
+@keyframes aiTextReveal {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(5px);
+
+        filter:
+            blur(2px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+
+        filter:
+            blur(0);
+    }
+}
+
+
+/* ==========================================================
+   THINKING DOTS
+========================================================== */
+
+.thinking-dots {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 5px;
+
+    margin-top: 6px;
+}
+
+.thinking-dots span {
+    width: 6px;
+
+    height: 6px;
+
+    border-radius: 50%;
+
+    background:
+        #93c5fd;
+
+    opacity: .3;
+
+    animation:
+        thinkingPulse
+        1.2s
+        infinite
+        ease-in-out;
+}
+
+.thinking-dots span:nth-child(2) {
+    animation-delay:
+        .15s;
+}
+
+.thinking-dots span:nth-child(3) {
+    animation-delay:
+        .30s;
+}
+
+@keyframes thinkingPulse {
+
+    0%,
+    60%,
+    100% {
+        opacity: .25;
+
+        transform:
+            translateY(0);
+    }
+
+    30% {
+        opacity: 1;
+
+        transform:
+            translateY(-3px);
+    }
+}
+
+
+/* ==========================================================
+   AI GLOW
+========================================================== */
+
+.message.ai {
+    animation:
+        aiGlow
+        1.8s
+        ease-in-out;
+}
+
+@keyframes aiGlow {
+
+    0% {
+        box-shadow:
+            0 0 0
+            rgba(120, 160, 255, 0);
+    }
+
+    35% {
+        box-shadow:
+            0 0 22px
+            rgba(120, 160, 255, .18);
+    }
+
+    100% {
+        box-shadow:
+            0 8px 25px
+            rgba(0, 0, 0, .12);
+    }
+}
+
+
+/* ==========================================================
+   MESSAGE ACTIONS
+========================================================== */
+
+.message-actions {
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    margin-top: 10px;
+
+    opacity: 0;
+
+    transform:
+        translateY(4px);
+
+    pointer-events: none;
+
+    transition:
+        opacity .2s ease,
+        transform .2s ease;
+}
+
+.message.ai:hover .message-actions {
+    opacity: 1;
+
+    transform:
+        translateY(0);
+
+    pointer-events: auto;
+}
+
+
+/* ==========================================================
+   ACTION BUTTONS
+========================================================== */
+
+.message-actions button {
+    width: 32px;
+
+    height: 30px;
+
+    padding: 0;
+
+    border:
+        1px solid
+        rgba(255, 255, 255, .08);
+
+    border-radius: 8px;
+
+    background:
+        rgba(255, 255, 255, .04);
+
+    color:
+        #aeb7c7;
+
+    cursor: pointer;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 14px;
+
+    transition:
+        background .18s ease,
+        color .18s ease,
+        transform .18s ease,
+        border-color .18s ease;
+}
+
+.message-actions button:hover {
+    background:
+        rgba(255, 255, 255, .10);
+
+    color: white;
+
+    border-color:
+        rgba(255, 255, 255, .16);
+
+    transform:
+        translateY(-1px);
+}
+
+.message-actions button:active {
+    transform:
+        scale(.92);
+}
+
+.message-actions button.active {
+    background:
+        rgba(99, 102, 241, .22);
+
+    color:
+        #c7d2fe;
+
+    border-color:
+        rgba(129, 140, 248, .35);
+}
+
+.message-actions button:disabled {
+    opacity: .5;
+
+    cursor:
+        not-allowed;
+
+    transform: none;
+}
+
+
+/* ==========================================================
+   PREMIUM FLOATING INPUT BAR
+========================================================== */
+
+.input-bar {
+    position: relative;
+
+    margin: 0 28px 24px 28px;
+    padding: 10px;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    border-radius: 20px;
+
+    background: rgba(17, 24, 39, 0.72);
+
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
+
+    box-shadow:
+        0 12px 40px rgba(0, 0, 0, 0.30),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+
+    transition:
+        border-color 0.25s ease,
+        box-shadow 0.25s ease,
+        transform 0.25s ease;
+}
+
+
+/* subtle glow behind input */
+
+.input-bar::before {
+    content: "";
+
+    position: absolute;
+
+    inset: -1px;
+
+    border-radius: inherit;
+
+    background:
+        linear-gradient(
+            120deg,
+            rgba(79, 70, 229, 0.20),
+            transparent 35%,
+            rgba(37, 99, 235, 0.18)
+        );
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    transition: opacity 0.3s ease;
+
+    z-index: -1;
+}
+
+
+/* Focus effect */
+
+.input-bar:focus-within {
+    border-color: rgba(96, 165, 250, 0.35);
+
+    box-shadow:
+        0 14px 45px rgba(0, 0, 0, 0.35),
+        0 0 25px rgba(59, 130, 246, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.07);
+
+    transform: translateY(-1px);
+}
+
+.input-bar:focus-within::before {
+    opacity: 1;
+}
+
+
+/* ==========================================================
+   INPUT
+========================================================== */
+
+.input-bar input {
+    flex: 1;
+
+    min-width: 0;
+
+    height: 54px;
+
+    padding: 0 18px;
+
+    border: none;
+    outline: none;
+
+    border-radius: 14px;
+
+    background: rgba(30, 41, 59, 0.72);
+
+    color: white;
+
+    font-size: 16px;
+
+    font-weight: 400;
+
+    letter-spacing: 0.1px;
+
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.03);
+
+    transition:
+        background 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+.input-bar input:focus {
+    background: rgba(30, 41, 59, 0.92);
+
+    box-shadow:
+        inset 0 0 0 1px rgba(96, 165, 250, 0.08);
+}
+
+
+.input-bar input::placeholder {
+    color: #94a3b8;
+
+    transition:
+        color 0.2s ease;
+}
+
+
+.input-bar input:focus::placeholder {
+    color: #64748b;
+}
+
+
+/* ==========================================================
+   PREMIUM SEND BUTTON
+========================================================== */
+
+#sendBtn {
+    flex-shrink: 0;
+
+    width: 54px;
+    height: 54px;
+
+    border: 1px solid rgba(255, 255, 255, 0.10);
+
+    border-radius: 15px;
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #4f46e5,
+            #2563eb
+        );
+
+    color: white;
+
+    font-size: 23px;
+
+    box-shadow:
+        0 8px 20px rgba(37, 99, 235, 0.28);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        filter 0.2s ease;
+}
+
+
+#sendBtn:hover {
+    transform: translateY(-2px) scale(1.04);
+
+    filter: brightness(1.08);
+
+    box-shadow:
+        0 12px 28px rgba(37, 99, 235, 0.40),
+        0 0 18px rgba(59, 130, 246, 0.18);
+}
+
+
+#sendBtn:active {
+    transform: scale(0.94);
+}
+
+
+/* Disabled state */
+
+#sendBtn:disabled {
+    opacity: 0.5;
+
+    cursor: not-allowed;
+
+    transform: none;
+
+    box-shadow: none;
+}
+
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+
+@media (max-width: 700px) {
+
+    .input-bar {
+        margin:
+            0
+            12px
+            12px
+            12px;
+
+        padding: 8px;
+
+        border-radius: 17px;
+    }
+
+    .input-bar input {
+        height: 48px;
+
+        padding: 0 14px;
+
+        font-size: 15px;
+    }
+
+    #sendBtn {
+        width: 48px;
+        height: 48px;
+
+        border-radius: 13px;
+
+        font-size: 20px;
+    }
+}
+
+
+/* ==========================================================
+   AYAN AI ORB
+========================================================== */
+
+.ayan-orb {
+    position: fixed !important;
+
+    left: 50% !important;
+
+    bottom: 78px !important;
+
+    width: 64px;
+
+    height: 64px;
+
+    transform:
+        translateX(-50%);
+
+    z-index: 9999;
+
+    pointer-events: none;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background:
+        radial-gradient(
+            circle at 35% 30%,
+            rgba(255,255,255,.9),
+            rgba(120,160,255,.35) 25%,
+            rgba(80,90,255,.18) 55%,
+            rgba(20,20,50,.1)
+        );
+
+    border:
+        1px solid
+        rgba(255,255,255,.18);
+
+    box-shadow:
+        0 0 25px
+        rgba(100,130,255,.35),
+
+        inset 0 0 20px
+        rgba(255,255,255,.08);
+
+    backdrop-filter:
+        blur(15px);
+
+    animation:
+        ayanOrbFloat
+        4s
+        ease-in-out
+        infinite;
+}
+
+
+/* ==========================================================
+   ORB CORE
+========================================================== */
+
+.ayan-orb-core {
+    width: 18px;
+
+    height: 18px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(180,200,255,.95);
+
+    box-shadow:
+        0 0 10px
+        rgba(150,180,255,.9),
+
+        0 0 25px
+        rgba(100,140,255,.7);
+
+    animation:
+        ayanOrbPulse
+        2.2s
+        ease-in-out
+        infinite;
+}
+
+
+/* ==========================================================
+   ORB LABEL
+========================================================== */
+
+.ayan-orb span {
+    position: absolute;
+
+    bottom: -18px;
+
+    font-size: 8px;
+
+    letter-spacing: 2px;
+
+    opacity: .45;
+
+    color: #cbd5e1;
+}
+
+
+/* ==========================================================
+   ORB THINKING
+========================================================== */
+
+.ayan-orb.thinking {
+    transform:
+        translateX(-50%)
+        scale(1.12);
+
+    box-shadow:
+        0 0 35px
+        rgba(100,140,255,.7),
+
+        0 0 70px
+        rgba(80,100,255,.3),
+
+        inset 0 0 20px
+        rgba(255,255,255,.12);
+}
+
+.ayan-orb.thinking .ayan-orb-core {
+    animation:
+        ayanOrbThinking
+        .8s
+        ease-in-out
+        infinite;
+}
+
+
+/* ==========================================================
+   ORB RESPONDING
+========================================================== */
+
+.ayan-orb.responding {
+    transform:
+        translateX(-50%)
+        scale(1.08);
+
+    box-shadow:
+        0 0 30px
+        rgba(100,150,255,.65),
+
+        0 0 55px
+        rgba(80,100,255,.25);
+}
+
+.ayan-orb.responding .ayan-orb-core {
+    animation:
+        ayanOrbResponding
+        .5s
+        ease-in-out
+        infinite
+        alternate;
+}
+
+
+/* ==========================================================
+   ORB ANIMATIONS
+========================================================== */
+
+@keyframes ayanOrbFloat {
+
+    0%,
+    100% {
+        margin-bottom: 0;
+    }
+
+    50% {
+        margin-bottom: 6px;
+    }
+}
+
+
+@keyframes ayanOrbPulse {
+
+    0%,
+    100% {
+        transform:
+            scale(.9);
+
+        opacity: .75;
+    }
+
+    50% {
+        transform:
+            scale(1.15);
+
+        opacity: 1;
+    }
+}
+
+
+@keyframes ayanOrbThinking {
+
+    0% {
+        transform:
+            scale(.75);
+
+        opacity: .55;
+    }
+
+    50% {
+        transform:
+            scale(1.35);
+
+        opacity: 1;
+    }
+
+    100% {
+        transform:
+            scale(.8);
+
+        opacity: .65;
+    }
+}
+
+
+@keyframes ayanOrbResponding {
+
+    from {
+        transform:
+            scale(.8);
+    }
+
+    to {
+        transform:
+            scale(1.3);
+    }
+}
+
+
+/* ==========================================================
+   RESPONSIVE
+========================================================== */
+
+@media (max-width: 800px) {
+
+    .sidebar {
+        width: 220px;
+
+        min-width: 220px;
+
+        padding: 18px;
+    }
+
+    .logo {
+        font-size: 23px;
+    }
+
+    .chat-area {
+        padding:
+            25px
+            20px
+            110px
+            20px;
+    }
+
+    .message {
+        max-width: 88%;
+    }
+
+    .welcome h1 {
+        font-size: 36px;
+    }
+
+    .welcome p {
+        font-size: 16px;
+    }
+
+    .input-bar {
+        padding:
+            14px;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .sidebar {
+        width: 75px;
+
+        min-width: 75px;
+
+        padding:
+            15px 10px;
+    }
+
+    .logo {
+        font-size: 0;
+
+        text-align: center;
+    }
+
+    .logo::after {
+        content: "🤖";
+
+        font-size: 28px;
+    }
+
+    .new-chat {
+        font-size: 0;
+
+        padding: 12px;
+    }
+
+    .new-chat::after {
+        content: "+";
+
+        font-size: 22px;
+    }
+
+    .bottom-menu {
+        display: none;
+    }
+
+    .chat-item span {
+        display: none;
+    }
+
+    .chat-item {
+        justify-content: center;
+    }
+
+    .delete-chat {
+        display: none;
+    }
+
+    .message {
+        max-width: 92%;
+    }
+
+    .welcome h1 {
+        font-size: 30px;
+    }
+
+    .suggestions {
+        gap: 8px;
+    }
+
+    .suggestions button {
+        padding:
+            11px 14px;
+
+        font-size: 13px;
+    }
+
+    .ayan-orb {
+        width: 52px;
+
+        height: 52px;
+
+        bottom: 72px !important;
+    }
+
+    .ayan-orb-core {
+        width: 15px;
+
+        height: 15px;
+    }
+
+}
+
+
+/* ==========================================================
+   SELECTION
+========================================================== */
+
+::selection {
+    background:
+        rgba(99, 102, 241, .4);
+
+    color: white;
+}
+/* ==========================================================
+   AYAN AI — SMART ORB STATES
+========================================================== */
+
+/* Smooth state transitions */
+.ayan-orb {
+    transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease,
+        filter 0.35s ease;
+}
+
+/* ------------------------------
+   THINKING STATE
+------------------------------ */
+
+.ayan-orb.thinking {
+    animation:
+        ayanOrbThinkingFloat 2s ease-in-out infinite,
+        ayanOrbThinkingGlow 1.4s ease-in-out infinite;
+
+    filter: brightness(1.15);
+}
+
+.ayan-orb.thinking .ayan-orb-core {
+    animation: ayanCoreThinking 0.75s ease-in-out infinite;
+}
+
+.ayan-orb.thinking::before {
+    animation:
+        ayanThinkingRing 1.5s linear infinite;
+}
+
+
+/* ------------------------------
+   RESPONDING STATE
+------------------------------ */
+
+.ayan-orb.responding {
+    animation:
+        ayanOrbRespondingFloat 1.8s ease-in-out infinite,
+        ayanOrbRespondingGlow 1s ease-in-out infinite;
+
+    filter: brightness(1.2);
+}
+
+.ayan-orb.responding .ayan-orb-core {
+    animation: ayanCoreResponding 0.45s ease-in-out infinite alternate;
+}
+
+.ayan-orb.responding::before {
+    animation:
+        ayanRespondingRing 1s linear infinite;
+}
+
+
+/* ------------------------------
+   THINKING ANIMATIONS
+------------------------------ */
+
+@keyframes ayanOrbThinkingFloat {
+
+    0%, 100% {
+        margin-bottom: 0;
+    }
+
+    50% {
+        margin-bottom: 7px;
+    }
+}
+
+@keyframes ayanOrbThinkingGlow {
+
+    0%, 100% {
+        box-shadow:
+            0 0 20px rgba(100,130,255,.25),
+            0 0 45px rgba(80,100,255,.12);
+    }
+
+    50% {
+        box-shadow:
+            0 0 35px rgba(100,150,255,.65),
+            0 0 75px rgba(80,100,255,.35);
+    }
+}
+
+@keyframes ayanCoreThinking {
+
+    0% {
+        transform: scale(.75);
+        opacity: .55;
+    }
+
+    50% {
+        transform: scale(1.4);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(.85);
+        opacity: .65;
+    }
+}
+
+@keyframes ayanThinkingRing {
+
+    from {
+        transform: rotate(0deg) scale(.95);
+        opacity: .25;
+    }
+
+    to {
+        transform: rotate(360deg) scale(1.08);
+        opacity: .65;
+    }
+}
+
+
+/* ------------------------------
+   RESPONDING ANIMATIONS
+------------------------------ */
+
+@keyframes ayanOrbRespondingFloat {
+
+    0%, 100% {
+        margin-bottom: 0;
+    }
+
+    50% {
+        margin-bottom: 5px;
+    }
+}
+
+@keyframes ayanOrbRespondingGlow {
+
+    0%, 100% {
+        box-shadow:
+            0 0 25px rgba(80,140,255,.35);
+    }
+
+    50% {
+        box-shadow:
+            0 0 45px rgba(80,160,255,.8),
+            0 0 90px rgba(70,100,255,.35);
+    }
+}
+
+@keyframes ayanCoreResponding {
+
+    from {
+        transform: scale(.8);
+        opacity: .7;
+    }
+
+    to {
+        transform: scale(1.35);
+        opacity: 1;
+    }
+}
+
+@keyframes ayanRespondingRing {
+
+    from {
+        transform: rotate(0deg) scale(1);
+    }
+
+    to {
+        transform: rotate(360deg) scale(1.12);
+    }
+}
+
+
+/* ------------------------------
+   IDLE STATE
+------------------------------ */
+
+.ayan-orb:not(.thinking):not(.responding) {
+    animation: ayanIdleFloat 4s ease-in-out infinite;
+}
+
+@keyframes ayanIdleFloat {
+
+    0%, 100% {
+        transform: translateX(-50%) translateY(0);
+    }
+
+    50% {
+        transform: translateX(-50%) translateY(-5px);
+    }
+}
+/* ==========================================================
+   AYAN AI — PREMIUM MESSAGE REVEAL
+========================================================== */
+
+/* AI bubble entrance */
+.message.ai {
+    animation: ayanMessageEnter 0.45s cubic-bezier(.2,.8,.2,1) both;
+}
+
+@keyframes ayanMessageEnter {
+    from {
+        opacity: 0;
+        transform: translateY(12px) scale(.985);
+        filter: blur(4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+    }
+}
+
+
+/* AI text reveal */
+.message.ai .markdown-body {
+    animation: ayanTextAppear 0.35s ease-out both;
+}
+
+@keyframes ayanTextAppear {
+    from {
+        opacity: 0;
+        transform: translateY(4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* User message entrance */
+.message.user {
+    animation: ayanUserMessageEnter 0.3s ease-out both;
+}
+
+@keyframes ayanUserMessageEnter {
+    from {
+        opacity: 0;
+        transform: translateX(12px) scale(.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+    }
+}
+
+
+/* Slightly smoother markdown elements */
+
+.message.ai .markdown-body p,
+.message.ai .markdown-body li,
+.message.ai .markdown-body h1,
+.message.ai .markdown-body h2,
+.message.ai .markdown-body h3,
+.message.ai .markdown-body pre {
+    animation: ayanContentReveal 0.3s ease-out both;
+}
+
+@keyframes ayanContentReveal {
+    from {
+        opacity: 0;
+        transform: translateY(3px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* Code blocks get a premium glow */
+
+.message.ai .markdown-body pre {
+    border: 1px solid rgba(255,255,255,.06);
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,.18);
+
+    transition:
+        border-color .25s ease,
+        box-shadow .25s ease;
+}
+
+.message.ai .markdown-body pre:hover {
+    border-color: rgba(96,165,250,.18);
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,.25);
+}
+
+
+/* Respect reduced-motion accessibility */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .message.ai,
+    .message.user,
+    .message.ai .markdown-body,
+    .message.ai .markdown-body p,
+    .message.ai .markdown-body li,
+    .message.ai .markdown-body h1,
+    .message.ai .markdown-body h2,
+    .message.ai .markdown-body h3,
+    .message.ai .markdown-body pre {
+        animation: none;
+    }
+}
+/* ==========================================================
+   AYAN AI — PREMIUM SIDEBAR
+========================================================== */
+
+/* Sidebar glass depth */
+
+.sidebar {
+    position: relative;
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(17, 24, 39, 0.98),
+            rgba(15, 23, 42, 0.98)
+        );
+
+    box-shadow:
+        12px 0 40px rgba(0, 0, 0, 0.18);
+}
+
+
+/* Subtle animated light inside sidebar */
+
+.sidebar::before {
+    content: "";
+
+    position: absolute;
+
+    width: 220px;
+    height: 220px;
+
+    top: -100px;
+    left: -100px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(79, 70, 229, 0.16),
+            transparent 70%
+        );
+
+    pointer-events: none;
+
+    animation:
+        sidebarAmbientGlow 8s ease-in-out infinite alternate;
+}
+
+@keyframes sidebarAmbientGlow {
+
+    from {
+        transform: translate(0, 0);
+        opacity: .45;
+    }
+
+    to {
+        transform: translate(80px, 120px);
+        opacity: .8;
+    }
+}
+
+
+/* Keep sidebar content above ambient glow */
+
+.sidebar > * {
+    position: relative;
+    z-index: 1;
+}
+
+
+/* ==========================================================
+   LOGO
+========================================================== */
+
+.logo {
+    transition:
+        transform .3s ease,
+        text-shadow .3s ease;
+}
+
+.logo:hover {
+    transform: translateX(3px);
+
+    text-shadow:
+        0 0 18px rgba(96, 165, 250, .35);
+}
+
+
+/* ==========================================================
+   NEW CHAT
+========================================================== */
+
+.new-chat {
+    position: relative;
+    overflow: hidden;
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease,
+        filter .25s ease;
+}
+
+.new-chat::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: -120%;
+
+    width: 80%;
+    height: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.18),
+            transparent
+        );
+
+    transform: skewX(-20deg);
+
+    transition: left .55s ease;
+
+    pointer-events: none;
+}
+
+.new-chat:hover::before {
+    left: 140%;
+}
+
+.new-chat:hover {
+    transform: translateY(-3px) scale(1.015);
+
+    filter: brightness(1.08);
+
+    box-shadow:
+        0 14px 32px rgba(37,99,235,.38);
+}
+
+.new-chat:active {
+    transform: scale(.97);
+}
+
+
+/* ==========================================================
+   CHAT LIST
+========================================================== */
+
+.menu {
+    overflow-y: auto;
+
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255,255,255,.12) transparent;
+}
+
+
+/* Individual
+/* ==========================================================
+   AYAN AI — PREMIUM THINKING STATUS
+========================================================== */
+
+.ai .thinking-dots {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+
+    min-height: 22px;
+    padding: 5px 9px;
+
+    border-radius: 10px;
+
+    background: rgba(255,255,255,.035);
+    border: 1px solid rgba(255,255,255,.055);
+
+    box-shadow:
+        inset 0 0 12px rgba(255,255,255,.025);
+
+    animation:
+        thinkingContainer .8s ease-in-out infinite alternate;
+}
+
+
+/* Individual dots */
+
+.ai .thinking-dots span {
+    width: 6px;
+    height: 6px;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #93c5fd,
+            #818cf8
+        );
+
+    box-shadow:
+        0 0 8px rgba(96,165,250,.55);
+
+    opacity: .35;
+
+    animation:
+        thinkingDot 1s ease-in-out infinite;
+}
+
+.ai .thinking-dots span:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.ai .thinking-dots span:nth-child(2) {
+    animation-delay: .16s;
+}
+
+.ai .thinking-dots span:nth-child(3) {
+    animation-delay: .32s;
+}
+
+
+/* Container breathing */
+
+@keyframes thinkingContainer {
+
+    from {
+        opacity: .65;
+        transform: translateY(0);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(-1px);
+    }
+}
+
+
+/* Dot movement */
+
+@keyframes thinkingDot {
+
+    0%, 60%, 100% {
+        opacity: .3;
+        transform: translateY(0) scale(.7);
+    }
+
+    30% {
+        opacity: 1;
+        transform: translateY(-4px) scale(1);
+    }
+}
+
+
+/* ==========================================================
+   AI PROCESSING GLOW
+========================================================== */
+
+.ai:has(.thinking-dots) {
+    border: 1px solid rgba(96,165,250,.08);
+
+    box-shadow:
+        0 0 20px rgba(59,130,246,.08),
+        inset 0 0 20px rgba(255,255,255,.015);
+}
+
+
+/* ==========================================================
+   THINKING → ANSWER TRANSITION
+========================================================== */
+
+.ai .markdown-body {
+    transition:
+        opacity .25s ease,
+        transform .25s ease;
+}
+
+
+/* ==========================================================
+   REDUCED MOTION
+========================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .ai .thinking-dots,
+    .ai .thinking-dots span {
+        animation: none;
+    }
+
+}
+/* ==========================================================
+   AYAN AI — ULTRA PREMIUM WELCOME SCREEN
+   Apple / Arc / Futuristic AI inspired
+========================================================== */
+
+/* ----------------------------------------------------------
+   WELCOME CONTAINER
+---------------------------------------------------------- */
+
+.chat-area:has(.welcome) {
+    position: relative;
+    overflow: hidden;
+}
+
+
+/* Cinematic background */
+
+.chat-area:has(.welcome)::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            circle at 50% 35%,
+            rgba(99,102,241,.10),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 20% 70%,
+            rgba(37,99,235,.07),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 80% 25%,
+            rgba(139,92,246,.06),
+            transparent 28%
+        );
+
+    animation:
+        welcomeAtmosphere 12s ease-in-out infinite alternate;
+}
+
+
+/* ----------------------------------------------------------
+   AURORA LIGHT
+---------------------------------------------------------- */
+
+.chat-area:has(.welcome)::after {
+    content: "";
+
+    position: absolute;
+
+    width: 650px;
+    height: 650px;
+
+    left: 50%;
+    top: 42%;
+
+    transform: translate(-50%, -50%);
+
+    border-radius: 50%;
+
+    background:
+        conic-gradient(
+            from 0deg,
+            rgba(59,130,246,0),
+            rgba(99,102,241,.07),
+            rgba(168,85,247,.06),
+            rgba(59,130,246,0),
+            rgba(99,102,241,.07),
+            rgba(59,130,246,0)
+        );
+
+    filter: blur(45px);
+
+    pointer-events: none;
+
+    animation:
+        welcomeAurora 16s linear infinite;
+}
+
+
+/* ----------------------------------------------------------
+   WELCOME CONTENT
+---------------------------------------------------------- */
+
+.welcome {
+    position: relative;
+    z-index: 2;
+
+    width: min(900px, 92%);
+
+    margin: auto;
+
+    padding: 45px 30px 55px;
+
+    text-align: center;
+
+    animation:
+        welcomeEntrance .9s
+        cubic-bezier(.16,1,.3,1)
+        both;
+}
+
+
+/* ----------------------------------------------------------
+   PREMIUM ORB
+---------------------------------------------------------- */
+
+.welcome::before {
+    content: "";
+
+    position: absolute;
+
+    width: 150px;
+    height: 150px;
+
+    left: 50%;
+    top: 0;
+
+    transform: translateX(-50%);
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle at 35% 30%,
+            rgba(255,255,255,.95),
+            rgba(147,197,253,.32) 20%,
+            rgba(99,102,241,.15) 48%,
+            transparent 72%
+        );
+
+    filter: blur(2px);
+
+    opacity: .75;
+
+    box-shadow:
+        0 0 35px rgba(96,165,250,.20),
+        0 0 90px rgba(99,102,241,.10);
+
+    animation:
+        welcomeOrb 5s
+        ease-in-out
+        infinite;
+}
+
+
+/* Orb rings */
+
+.welcome h1::before {
+    content: "";
+
+    position: absolute;
+
+    width: 110px;
+    height: 110px;
+
+    left: 50%;
+    top: -15px;
+
+    transform: translateX(-50%);
+
+    border-radius: 50%;
+
+    border:
+        1px solid rgba(147,197,253,.15);
+
+    box-shadow:
+        0 0 35px rgba(99,102,241,.08);
+
+    animation:
+        welcomeRing 7s
+        linear
+        infinite;
+}
+
+
+/* ----------------------------------------------------------
+   TITLE
+---------------------------------------------------------- */
+
+.welcome h1 {
+    position: relative;
+
+    margin-top: 125px;
+    margin-bottom: 20px;
+
+    font-size:
+        clamp(42px, 6vw, 72px);
+
+    line-height: 1.05;
+
+    letter-spacing: -3px;
+
+    font-weight: 700;
+
+    background:
+        linear-gradient(
+            110deg,
+            #ffffff 0%,
+            #dbeafe 25%,
+            #a5b4fc 50%,
+            #c4b5fd 70%,
+            #ffffff 100%
+        );
+
+    background-size: 300% auto;
+
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    -webkit-text-fill-color: transparent;
+
+    animation:
+        premiumTitle 7s
+        ease-in-out
+        infinite;
+}
+
+
+/* ----------------------------------------------------------
+   SUBTITLE
+---------------------------------------------------------- */
+
+.welcome p {
+    position: relative;
+
+    max-width: 650px;
+
+    margin:
+        0 auto 38px;
+
+    color:
+        rgba(203,213,225,.72);
+
+    font-size: 17px;
+
+    line-height: 1.75;
+
+    letter-spacing: .15px;
+
+    animation:
+        subtitleEntrance .8s
+        .15s
+        both;
+}
+
+
+/* Small status */
+
+.welcome p::after {
+    content: "  •  Ready to assist";
+
+    color:
+        rgba(147,197,253,.65);
+
+    font-size: 12px;
+
+    letter-spacing: .4px;
+}
+
+
+/* ----------------------------------------------------------
+   SUGGESTION CARDS
+---------------------------------------------------------- */
+
+.suggestions {
+    position: relative;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 14px;
+
+    width: 100%;
+
+    max-width: 850px;
+
+    margin: 0 auto;
+}
+
+
+/* Individual cards */
+
+.suggestions button {
+    position: relative;
+
+    min-height: 82px;
+
+    padding: 18px 15px;
+
+    overflow: hidden;
+
+    border:
+        1px solid rgba(255,255,255,.075);
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.075),
+            rgba(255,255,255,.025)
+        );
+
+    color:
+        rgba(241,245,249,.9);
+
+    font-size: 14px;
+
+    font-weight: 500;
+
+    cursor: pointer;
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    box-shadow:
+        0 12px 35px rgba(0,0,0,.12),
+        inset 0 1px 0 rgba(255,255,255,.035);
+
+    transition:
+        transform .35s
+            cubic-bezier(.16,1,.3,1),
+        background .35s ease,
+        border-color .35s ease,
+        box-shadow .35s ease;
+}
+
+
+/* Card light */
+
+.suggestions button::before {
+    content: "";
+
+    position: absolute;
+
+    width: 180px;
+    height: 180px;
+
+    left: 50%;
+    top: 50%;
+
+    transform:
+        translate(-50%, -50%)
+        scale(.5);
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(99,102,241,.13),
+            transparent 70%
+        );
+
+    opacity: 0;
+
+    transition:
+        opacity .35s ease,
+        transform .5s ease;
+}
+
+
+/* Card shine */
+
+.suggestions button::after {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: -130%;
+
+    width: 70%;
+    height: 100%;
+
+    background:
+        linear-gradient(
+            100deg,
+            transparent,
+            rgba(255,255,255,.09),
+            transparent
+        );
+
+    transform: skewX(-20deg);
+
+    pointer-events: none;
+}
+
+
+/* Hover */
+
+.suggestions button:hover {
+    transform:
+        translateY(-8px)
+        scale(1.025);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(99,102,241,.13),
+            rgba(59,130,246,.065)
+        );
+
+    border-color:
+        rgba(147,197,253,.18);
+
+    box-shadow:
+        0 20px 45px rgba(0,0,0,.22),
+        0 0 35px rgba(99,102,241,.08);
+}
+
+
+.suggestions button:hover::before {
+    opacity: 1;
+
+    transform:
+        translate(-50%, -50%)
+        scale(1);
+}
+
+
+.suggestions button:hover::after {
+    animation:
+        cardShine .8s
+        ease
+        forwards;
+}
+
+
+/* Click */
+
+.suggestions button:active {
+    transform:
+        translateY(-2px)
+        scale(.97);
+}
+
+
+/* ----------------------------------------------------------
+   ANIMATIONS
+---------------------------------------------------------- */
+
+@keyframes welcomeEntrance {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(30px)
+            scale(.97);
+
+        filter: blur(8px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+        filter: blur(0);
+    }
+}
+
+
+@keyframes subtitleEntrance {
+
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+@keyframes welcomeOrb {
+
+    0%, 100% {
+        transform:
+            translateX(-50%)
+            translateY(0)
+            scale(.95);
+
+        opacity: .62;
+    }
+
+    50% {
+        transform:
+            translateX(-50%)
+            translateY(-10px)
+            scale(1.08);
+
+        opacity: .9;
+    }
+}
+
+
+@keyframes welcomeRing {
+
+    from {
+        transform:
+            translateX(-50%)
+            rotate(0deg)
+            scale(.95);
+    }
+
+    to {
+        transform:
+            translateX(-50%)
+            rotate(360deg)
+            scale(1.05);
+    }
+}
+
+
+@keyframes premiumTitle {
+
+    0%, 100% {
+        background-position: 0% center;
+    }
+
+    50% {
+        background-position: 100% center;
+    }
+}
+
+
+@keyframes welcomeAtmosphere {
+
+    from {
+        opacity: .55;
+        transform: scale(1);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1.08);
+    }
+}
+
+
+@keyframes welcomeAurora {
+
+    from {
+        transform:
+            translate(-50%, -50%)
+            rotate(0deg)
+            scale(.9);
+    }
+
+    to {
+        transform:
+            translate(-50%, -50%)
+            rotate(360deg)
+            scale(1.1);
+    }
+}
+
+
+@keyframes cardShine {
+
+    from {
+        left: -130%;
+    }
+
+    to {
+        left: 150%;
+    }
+}
+
+
+/* ----------------------------------------------------------
+   RESPONSIVE
+---------------------------------------------------------- */
+
+@media (max-width: 850px) {
+
+    .suggestions {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .welcome h1 {
+        letter-spacing: -2px;
+    }
+}
+
+
+@media (max-width: 520px) {
+
+    .welcome {
+        width: 96%;
+        padding: 30px 10px;
+    }
+
+    .welcome h1 {
+        font-size: 38px;
+        letter-spacing: -1.5px;
+    }
+
+    .welcome p {
+        font-size: 15px;
+    }
+
+    .suggestions {
+        grid-template-columns: 1fr;
+    }
+
+    .suggestions button {
+        min-height: 64px;
+    }
+}
+
+
+/* ----------------------------------------------------------
+   REDUCED MOTION
+---------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .chat-area:has(.welcome)::before,
+    .chat-area:has(.welcome)::after,
+    .welcome,
+    .welcome::before,
+    .welcome h1,
+    .welcome h1::before,
+    .welcome p,
+    .suggestions button {
+        animation: none;
+    }
+}
+/* ==========================================================
+   AYAN AI — PREMIUM FLOATING INPUT OVERRIDE
+   KEEP THIS AT THE VERY BOTTOM OF style.css
+========================================================== */
+
+.main .input-bar {
+    position: relative !important;
+
+    margin: 0 30px 25px 30px !important;
+    padding: 9px !important;
+
+    height: 74px !important;
+
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+
+    border: 1px solid rgba(255,255,255,0.12) !important;
+    border-radius: 22px !important;
+
+    background: rgba(17,24,39,0.72) !important;
+
+    backdrop-filter: blur(25px) saturate(150%) !important;
+    -webkit-backdrop-filter: blur(25px) saturate(150%) !important;
+
+    box-shadow:
+        0 15px 45px rgba(0,0,0,0.38),
+        0 0 30px rgba(59,130,246,0.08),
+        inset 0 1px 0 rgba(255,255,255,0.06) !important;
+
+    transition:
+        transform .25s ease,
+        border-color .25s ease,
+        box-shadow .25s ease !important;
+}
+
+.main .input-bar:focus-within {
+    transform: translateY(-3px) !important;
+
+    border-color: rgba(96,165,250,0.45) !important;
+
+    box-shadow:
+        0 18px 50px rgba(0,0,0,0.45),
+        0 0 35px rgba(59,130,246,0.16),
+        inset 0 1px 0 rgba(255,255,255,0.08) !important;
+}
+
+.main .input-bar input {
+    height: 54px !important;
+
+    padding: 0 20px !important;
+
+    border: 1px solid rgba(255,255,255,0.05) !important;
+    border-radius: 16px !important;
+
+    background: rgba(30,41,59,0.78) !important;
+
+    color: #fff !important;
+
+    font-size: 16px !important;
+
+    outline: none !important;
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.04) !important;
+
+    transition:
+        background .25s ease,
+        border-color .25s ease,
+        box-shadow .25s ease !important;
+}
+
+.main .input-bar input:focus {
+    background: rgba(30,41,59,0.95) !important;
+
+    border-color: rgba(96,165,250,0.20) !important;
+
+    box-shadow:
+        0 0 18px rgba(59,130,246,0.08),
+        inset 0 1px 0 rgba(255,255,255,0.06) !important;
+}
+
+.main .input-bar input::placeholder {
+    color: #94a3b8 !important;
+}
+
+.main .input-bar #sendBtn {
+    width: 54px !important;
+    height: 54px !important;
+
+    flex-shrink: 0 !important;
+
+    border: 1px solid rgba(255,255,255,0.12) !important;
+    border-radius: 16px !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    background:
+        linear-gradient(
+            135deg,
+            #6366f1,
+            #2563eb
+        ) !important;
+
+    color: white !important;
+
+    font-size: 23px !important;
+
+    cursor: pointer !important;
+
+    box-shadow:
+        0 8px 22px rgba(37,99,235,0.35) !important;
+
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease,
+        filter .2s ease !important;
+}
+
+.main .input-bar #sendBtn:hover {
+    transform: translateY(-3px) scale(1.06) !important;
+
+    filter: brightness(1.12) !important;
+
+    box-shadow:
+        0 14px 30px rgba(37,99,235,0.48),
+        0 0 25px rgba(59,130,246,0.20) !important;
+}
+
+.main .input-bar #sendBtn:active {
+    transform: scale(.92) !important;
+}
+
+@media (max-width:700px) {
+
+    .main .input-bar {
+        margin:
+            0 10px 10px 10px !important;
+
+        height: 64px !important;
+        padding: 7px !important;
+
+        border-radius: 18px !important;
+    }
+
+    .main .input-bar input {
+        height: 48px !important;
+        font-size: 15px !important;
+    }
+
+    .main .input-bar #sendBtn {
+        width: 48px !important;
+        height: 48px !important;
+    }
+}
+/* ==========================================================
+   AYAN AI — PREMIUM MESSAGE HOVER
+========================================================== */
+
+.message {
+    position: relative;
+    overflow: hidden;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
+}
+
+/* AI glass surface */
+
+.message.ai {
+    border: 1px solid rgba(255,255,255,0.06);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(30,41,59,0.92),
+            rgba(15,23,42,0.82)
+        );
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,0.12);
+}
+
+/* Moving light */
+
+.message.ai::before {
+    content: "";
+
+    position: absolute;
+
+    width: 180px;
+    height: 180px;
+
+    top: -100px;
+    left: -100px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(96,165,250,0.16),
+            transparent 70%
+        );
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    transition:
+        opacity 0.35s ease,
+        transform 0.6s ease;
+}
+
+/* Hover */
+
+.message.ai:hover {
+    transform: translateY(-2px);
+
+    border-color:
+        rgba(96,165,250,0.18);
+
+    box-shadow:
+        0 14px 35px rgba(0,0,0,0.25),
+        0 0 25px rgba(59,130,246,0.07);
+}
+
+.message.ai:hover::before {
+    opacity: 1;
+
+    transform:
+        translate(
+            220px,
+            140px
+        );
+}
+
+
+/* User bubble */
+
+.message.user {
+    box-shadow:
+        0 8px 25px rgba(37,99,235,0.15);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.message.user:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 14px 32px rgba(37,99,235,0.25);
+}
+/* ==========================================================
+   AYAN AI — PREMIUM SIDEBAR GLASS EFFECT
+========================================================== */
+
+.sidebar {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Soft ambient light */
+
+.sidebar::before {
+    content: "";
+
+    position: absolute;
+
+    width: 260px;
+    height: 260px;
+
+    top: -120px;
+    left: -120px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(99,102,241,0.16),
+            transparent 70%
+        );
+
+    pointer-events: none;
+
+    animation: sidebarAmbient 8s ease-in-out infinite;
+}
+
+/* Second ambient glow */
+
+.sidebar::after {
+    content: "";
+
+    position: absolute;
+
+    width: 220px;
+    height: 220px;
+
+    bottom: -120px;
+    right: -120px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(37,99,235,0.12),
+            transparent 70%
+        );
+
+    pointer-events: none;
+
+    animation: sidebarAmbient2 10s ease-in-out infinite;
+}
+
+/* Keep sidebar content above glow */
+
+.sidebar > * {
+    position: relative;
+    z-index: 2;
+}
+
+/* Ambient movement */
+
+@keyframes sidebarAmbient {
+
+    0%, 100% {
+        transform: translate(0, 0) scale(1);
+        opacity: .7;
+    }
+
+    50% {
+        transform: translate(80px, 90px) scale(1.25);
+        opacity: 1;
+    }
+}
+
+@keyframes sidebarAmbient2 {
+
+    0%, 100% {
+        transform: translate(0, 0) scale(1);
+        opacity: .5;
+    }
+
+    50% {
+        transform: translate(-70px, -80px) scale(1.2);
+        opacity: .9;
+    }
+}
+
+/* Premium chat item */
+
+.chat-item {
+    position: relative;
+    overflow: hidden;
+
+    border: 1px solid transparent;
+
+    transition:
+        background .25s ease,
+        transform .25s ease,
+        border-color .25s ease,
+        box-shadow .25s ease;
+}
+
+.chat-item:hover {
+    background:
+        rgba(255,255,255,0.055);
+
+    border-color:
+        rgba(255,255,255,0.08);
+
+    transform: translateX(5px);
+
+    box-shadow:
+        0 8px 22px rgba(0,0,0,.16);
+}
+
+/* Premium menu item */
+
+.menu-item {
+    border: 1px solid transparent;
+
+    transition:
+        background .25s ease,
+        transform .25s ease,
+        border-color .25s ease,
+        box-shadow .25s ease;
+}
+
+.menu-item:hover {
+    background:
+        rgba(255,255,255,0.045);
+
+    border-color:
+        rgba(255,255,255,0.07);
+
+    transform: translateX(5px);
+
+    box-shadow:
+        0 8px 20px rgba(0,0,0,.12);
+}
+/* ==========================================================
+   AYAN AI — FORCE CRYSTAL BLACK THEME
+========================================================== */
+
+html,
+body,
+.app,
+.main,
+.chat-area {
+    background: #050505 !important;
+}
+
+.sidebar {
+    background:
+        linear-gradient(
+            145deg,
+            #1c1c1e 0%,
+            #090909 45%,
+            #141416 100%
+        ) !important;
+
+    border-right:
+        1px solid rgba(255,255,255,0.10) !important;
+}
+
+.main {
+    background:
+        radial-gradient(
+            circle at 50% -20%,
+            rgba(255,255,255,0.045),
+            transparent 35%
+        ),
+        #050505 !important;
+}
+
+.chat-area {
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(255,255,255,0.035),
+            transparent 32%
+        ),
+        #050505 !important;
+}
+
+.input-bar {
+    background:
+        linear-gradient(
+            180deg,
+            #171719,
+            #080809
+        ) !important;
+
+    border-top:
+        1px solid rgba(255,255,255,0.10) !important;
+}
+
+.input-bar input {
+    background:
+        linear-gradient(
+            145deg,
+            #242426,
+            #111113
+        ) !important;
+
+    color: #ffffff !important;
+
+    border:
+        1px solid rgba(255,255,255,0.10) !important;
+}
+/* ==========================================================
+   AYAN AI — CRYSTAL GLASS SHINE
+========================================================== */
+
+/* Sidebar glass surface */
+.sidebar {
+    position: relative;
+    isolation: isolate;
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+}
+
+/* Moving crystal reflection */
+.sidebar::before {
+    content: "";
+
+    position: absolute;
+
+    top: -40%;
+    left: -80%;
+
+    width: 55%;
+    height: 180%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,0.055),
+            transparent
+        );
+
+    transform: rotate(18deg);
+
+    pointer-events: none;
+
+    z-index: 0;
+
+    animation: crystalShine 8s ease-in-out infinite;
+}
+
+/* Fine glass highlight */
+.sidebar::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    border-radius: inherit;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,0.045),
+            transparent 22%,
+            transparent 75%,
+            rgba(255,255,255,0.018)
+        );
+
+    pointer-events: none;
+
+    z-index: 0;
+}
+
+/* Keep sidebar content above shine */
+.sidebar > * {
+    position: relative;
+    z-index: 2;
+}
+
+/* Crystal reflection animation */
+@keyframes crystalShine {
+
+    0% {
+        left: -80%;
+        opacity: 0;
+    }
+
+    15% {
+        opacity: 1;
+    }
+
+    50% {
+        left: 130%;
+        opacity: 0.8;
+    }
+
+    65% {
+        opacity: 0;
+    }
+
+    100% {
+        left: 130%;
+        opacity: 0;
+    }
+}
+/* ==========================================================
+   AYAN AI — PREMIUM FADE SHADES
+========================================================== */
+
+/* ---------- Main Chat Area ---------- */
+
+.main {
+    position: relative;
+    background:
+        radial-gradient(
+            ellipse at 50% -15%,
+            rgba(255,255,255,0.055),
+            transparent 38%
+        ),
+        radial-gradient(
+            ellipse at 90% 60%,
+            rgba(90,100,130,0.035),
+            transparent 35%
+        ),
+        linear-gradient(
+            145deg,
+            #090909 0%,
+            #040404 48%,
+            #0a0a0b 100%
+        ) !important;
+}
+
+/* Very subtle fade at the top of chat */
+
+.chat-area {
+    position: relative;
+
+    background:
+        radial-gradient(
+            ellipse at 50% 0%,
+            rgba(255,255,255,0.035),
+            transparent 32%
+        ),
+        linear-gradient(
+            180deg,
+            rgba(255,255,255,0.012),
+            transparent 25%
+        ),
+        #050505 !important;
+}
+
+
+/* ---------- New Chat Button ---------- */
+
+.new-chat {
+    position: relative;
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            135deg,
+            #242426 0%,
+            #111113 45%,
+            #29292c 100%
+        ) !important;
+
+    border:
+        1px solid rgba(255,255,255,0.11);
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,0.35),
+        inset 0 1px 0 rgba(255,255,255,0.08);
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease,
+        border-color .25s ease;
+}
+
+/* Soft shine inside New Chat */
+
+.new-chat::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: -120%;
+
+    width: 80%;
+    height: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,0.10),
+            transparent
+        );
+
+    transform: skewX(-20deg);
+
+    transition: left .7s ease;
+
+    pointer-events: none;
+}
+
+.new-chat:hover::before {
+    left: 140%;
+}
+
+.new-chat:hover {
+    transform: translateY(-2px);
+
+    border-color:
+        rgba(255,255,255,0.18);
+
+    box-shadow:
+        0 12px 30px rgba(0,0,0,0.45),
+        0 0 18px rgba(255,255,255,0.035),
+        inset 0 1px 0 rgba(255,255,255,0.10);
+}
+
+
+/* ---------- Sidebar Chat Items ---------- */
+
+.chat-item {
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,0.025),
+            rgba(255,255,255,0.005)
+        );
+
+    border:
+        1px solid transparent;
+
+    transition:
+        background .25s ease,
+        transform .25s ease,
+        border-color .25s ease,
+        box-shadow .25s ease;
+}
+
+.chat-item:hover {
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,0.075),
+            rgba(255,255,255,0.018)
+        );
+
+    border-color:
+        rgba(255,255,255,0.08);
+
+    box-shadow:
+        0 8px 22px rgba(0,0,0,0.25),
+        inset 0 1px 0 rgba(255,255,255,0.045);
+
+    transform: translateX(5px);
+}
+
+
+/* ---------- Bottom Menu ---------- */
+
+.menu-item {
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,0.018),
+            transparent
+        );
+
+    border:
+        1px solid transparent;
+}
+
+.menu-item:hover {
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,0.065),
+            rgba(255,255,255,0.012)
+        );
+
+    border-color:
+        rgba(255,255,255,0.07);
+
+    box-shadow:
+        0 8px 20px rgba(0,0,0,0.20);
+}
+
+
+/* ---------- Input Area ---------- */
+
+.input-bar {
+    background:
+        linear-gradient(
+            180deg,
+            rgba(25,25,27,0.96),
+            rgba(7,7,8,0.99)
+        ) !important;
+
+    box-shadow:
+        0 -12px 35px rgba(0,0,0,0.35),
+        inset 0 1px 0 rgba(255,255,255,0.045);
+}
+
+
+/* ---------- Input Glass ---------- */
+
+.input-bar input {
+    background:
+        linear-gradient(
+            145deg,
+            rgba(38,38,40,0.90),
+            rgba(13,13,15,0.96)
+        ) !important;
+
+    border:
+        1px solid rgba(255,255,255,0.09);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.055),
+        inset 0 -10px 25px rgba(0,0,0,0.20);
+}
+
+.input-bar input:focus {
+    border-color:
+        rgba(255,255,255,0.18);
+
+    box-shadow:
+        0 0 0 3px rgba(255,255,255,0.025),
+        inset 0 1px 0 rgba(255,255,255,0.07);
+}
+/* ==========================================================
+   FORCE BLACK CRYSTAL MESSAGE INPUT
+========================================================== */
+
+.input-bar {
+    background: #080808 !important;
+}
+
+.input-bar input#message {
+    background:
+        linear-gradient(
+            145deg,
+            #202022 0%,
+            #111113 45%,
+            #09090a 100%
+        ) !important;
+
+    color: #ffffff !important;
+
+    border: 1px solid rgba(255,255,255,0.10) !important;
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.07),
+        inset 0 -8px 20px rgba(0,0,0,0.30),
+        0 4px 20px rgba(0,0,0,0.25) !important;
+}
+
+.input-bar input#message::placeholder {
+    color: rgba(255,255,255,0.38) !important;
+}
+
+.input-bar input#message:focus {
+    background:
+        linear-gradient(
+            145deg,
+            #252527 0%,
+            #131315 50%,
+            #09090a 100%
+        ) !important;
+
+    border-color:
+        rgba(255,255,255,0.18) !important;
+
+    outline: none !important;
+
+    box-shadow:
+        0 0 0 3px rgba(255,255,255,0.025),
+        inset 0 1px 0 rgba(255,255,255,0.08),
+        0 6px 25px rgba(0,0,0,0.35) !important;
+}
+/* ==========================================================
+   AYAN AI — BLACK + CREAM LUXURY ACCENT
+========================================================== */
+
+:root {
+    --cream: #f1e6d0;
+    --cream-soft: #d8c9ad;
+    --cream-glow: rgba(241, 230, 208, 0.18);
+}
+
+
+/* Send button */
+
+#sendBtn {
+    background:
+        linear-gradient(
+            135deg,
+            #f4ead8,
+            #d8c8aa
+        ) !important;
+
+    color: #111111 !important;
+
+    box-shadow:
+        0 6px 20px rgba(241,230,208,0.12),
+        inset 0 1px 0 rgba(255,255,255,0.55) !important;
+}
+
+#sendBtn:hover {
+    background:
+        linear-gradient(
+            135deg,
+            #fff4df,
+            #dfcfb1
+        ) !important;
+
+    box-shadow:
+        0 10px 28px rgba(241,230,208,0.20),
+        0 0 18px rgba(241,230,208,0.10) !important;
+}
+
+
+/* New Chat button */
+
+.new-chat {
+    background:
+        linear-gradient(
+            135deg,
+            #f1e6d0,
+            #cdbb9b
+        ) !important;
+
+    color: #111111 !important;
+
+    box-shadow:
+        0 8px 24px rgba(241,230,208,0.10),
+        inset 0 1px 0 rgba(255,255,255,0.55) !important;
+}
+
+.new-chat:hover {
+    background:
+        linear-gradient(
+            135deg,
+            #fff4df,
+            #ddcdb0
+        ) !important;
+
+    box-shadow:
+        0 12px 30px rgba(241,230,208,0.18) !important;
+}
+
+
+/* Logo */
+
+.logo {
+    color: var(--cream) !important;
+
+    text-shadow:
+        0 0 18px rgba(241,230,208,0.10);
+}
+
+
+/* Welcome heading */
+
+.welcome h1 {
+    color: #f5eee2;
+}
+
+.welcome p {
+    color: #a99d89 !important;
+}
+
+
+/* Suggestion buttons */
+
+.suggestions button {
+    background:
+        linear-gradient(
+            145deg,
+            #1d1c1a,
+            #0d0d0d
+        ) !important;
+
+    border:
+        1px solid rgba(241,230,208,0.10);
+
+    color: #e8decc !important;
+}
+
+.suggestions button:hover {
+    background:
+        linear-gradient(
+            145deg,
+            #292722,
+            #11110f
+        ) !important;
+
+    border-color:
+        rgba(241,230,208,0.22);
+
+    box-shadow:
+        0 10px 25px rgba(0,0,0,0.35),
+        0 0 16px rgba(241,230,208,0.05);
+}
+
+
+/* Input focus */
+
+.input-bar input#message:focus {
+    border-color:
+        rgba(241,230,208,0.28) !important;
+
+    box-shadow:
+        0 0 0 3px rgba(241,230,208,0.035),
+        0 6px 25px rgba(0,0,0,0.35),
+        inset 0 1px 0 rgba(255,255,255,0.08) !important;
+}
+
+
+/* AI action buttons */
+
+.message-actions button:hover,
+.message-actions button.active {
+    color: var(--cream) !important;
+
+    border-color:
+        rgba(241,230,208,0.18);
+
+    background:
+        rgba(241,230,208,0.06);
+}
+
+
+/* Cream scrollbar */
+
+.chat-area::-webkit-scrollbar {
+    width: 6px;
+}
+
+.chat-area::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.chat-area::-webkit-scrollbar-thumb {
+    background: rgba(241,230,208,0.16);
+    border-radius: 20px;
+}
+
+.chat-area::-webkit-scrollbar-thumb:hover {
+    background: rgba(241,230,208,0.28);
+}
+/* ==========================================================
+   AYAN AI — SOFT CREAM MESSAGE INPUT
+========================================================== */
+
+.input-bar input#message {
+    background:
+        linear-gradient(
+            135deg,
+            rgba(248, 239, 222, 0.96),
+            rgba(232, 220, 198, 0.94)
+        ) !important;
+
+    color: #171513 !important;
+
+    border: 1px solid rgba(255, 248, 235, 0.65) !important;
+
+    box-shadow:
+        inset 0 1px 2px rgba(255,255,255,0.75),
+        inset 0 -8px 20px rgba(120,100,70,0.08),
+        0 5px 25px rgba(0,0,0,0.30) !important;
+
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+
+    transition:
+        background 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.input-bar input#message::placeholder {
+    color: rgba(45, 40, 32, 0.48) !important;
+}
+
+.input-bar input#message:focus {
+    background:
+        linear-gradient(
+            135deg,
+            #fff8ea,
+            #eadfc9
+        ) !important;
+
+    color: #11100e !important;
+
+    border-color:
+        rgba(255, 248, 235, 0.90) !important;
+
+    outline: none !important;
+
+    box-shadow:
+        inset 0 1px 3px rgba(255,255,255,0.85),
+        inset 0 -8px 20px rgba(120,100,70,0.07),
+        0 0 0 3px rgba(241,230,208,0.08),
+        0 8px 30px rgba(0,0,0,0.35) !important;
+}
+
+/* Keep the surrounding input bar black */
+
+.input-bar {
+    background: #070707 !important;
+    border-top:
+        1px solid rgba(255,255,255,0.08) !important;
+}
+/* ==========================================================
+   AYAN AI — SOFT GOLD LUXURY ACCENTS
+========================================================== */
+
+:root {
+    --ayan-gold: #d8b978;
+    --ayan-gold-light: #f0dfb7;
+    --ayan-gold-glow: rgba(216, 185, 120, 0.16);
+}
+
+
+/* ---------- Logo ---------- */
+
+.logo {
+    color: #eee3cf !important;
+
+    text-shadow:
+        0 0 14px rgba(216, 185, 120, 0.10);
+}
+
+
+/* ---------- New Chat ---------- */
+
+.new-chat {
+    background:
+        linear-gradient(
+            135deg,
+            #f0dfb7 0%,
+            #d6b875 48%,
+            #b99655 100%
+        ) !important;
+
+    color: #17130c !important;
+
+    border:
+        1px solid rgba(240, 223, 183, 0.55) !important;
+
+    box-shadow:
+        0 8px 24px rgba(0,0,0,0.35),
+        0 0 18px rgba(216,185,120,0.08),
+        inset 0 1px 0 rgba(255,255,255,0.65) !important;
+}
+
+.new-chat:hover {
+    background:
+        linear-gradient(
+            135deg,
+            #f8e9c5,
+            #dfc487,
+            #c5a463
+        ) !important;
+
+    box-shadow:
+        0 12px 30px rgba(0,0,0,0.40),
+        0 0 25px rgba(216,185,120,0.14),
+        inset 0 1px 0 rgba(255,255,255,0.75) !important;
+}
+
+
+/* ---------- Send Button ---------- */
+
+#sendBtn {
+    background:
+        linear-gradient(
+            145deg,
+            #f1dfb6,
+            #d4b571
+        ) !important;
+
+    color: #15120c !important;
+
+    border:
+        1px solid rgba(245,230,195,0.55) !important;
+
+    box-shadow:
+        0 6px 22px rgba(216,185,120,0.13),
+        inset 0 1px 0 rgba(255,255,255,0.70) !important;
+}
+
+#sendBtn:hover {
+    background:
+        linear-gradient(
+            145deg,
+            #fff0c9,
+            #dfc383
+        ) !important;
+
+    box-shadow:
+        0 8px 28px rgba(216,185,120,0.20),
+        0 0 18px rgba(216,185,120,0.10),
+        inset 0 1px 0 rgba(255,255,255,0.80) !important;
+}
+
+
+/* ---------- Message Input ---------- */
+
+.input-bar input#message {
+    border-color:
+        rgba(216,185,120,0.22) !important;
+}
+
+.input-bar input#message:focus {
+    border-color:
+        rgba(216,185,120,0.48) !important;
+
+    box-shadow:
+        0 0 0 3px rgba(216,185,120,0.045),
+        0 8px 30px rgba(0,0,0,0.35),
+        inset 0 1px 3px rgba(255,255,255,0.80) !important;
+}
+
+
+/* ---------- Suggestion Buttons ---------- */
+
+.suggestions button:hover {
+    border-color:
+        rgba(216,185,120,0.28) !important;
+
+    box-shadow:
+        0 10px 25px rgba(0,0,0,0.35),
+        0 0 15px rgba(216,185,120,0.045);
+}
+
+
+/* ---------- Chat Items ---------- */
+
+.chat-item:hover {
+    border-color:
+        rgba(216,185,120,0.10) !important;
+}
+
+
+/* ---------- AI Action Buttons ---------- */
+
+.message-actions button:hover,
+.message-actions button.active {
+    color: var(--ayan-gold-light) !important;
+
+    border-color:
+        rgba(216,185,120,0.20) !important;
+
+    background:
+        rgba(216,185,120,0.055) !important;
+}
+
+
+/* ---------- Orb Gold Accent ---------- */
+
+.ayan-orb::before {
+    border-color:
+        rgba(216,185,120,0.16) !important;
+}
+
+.ayan-orb-core {
+    box-shadow:
+        0 0 10px rgba(240,223,183,0.65),
+        0 0 25px rgba(216,185,120,0.28) !important;
+}
+/* ==========================================================
+   USER MESSAGE — SOFT CREAM / GOLD
+========================================================== */
+
+.message.user {
+    background: linear-gradient(
+        135deg,
+        #f4ead2 0%,
+        #e8d8b5 100%
+    ) !important;
+
+    color: #17140f !important;
+
+    border: 1px solid rgba(212, 175, 55, 0.28) !important;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.22),
+        inset 0 1px 0 rgba(255, 255, 255, 0.55) !important;
+}
+
+.message.user strong {
+    color: #302818 !important;
+}
+
+.message.user .message-time {
+    color: rgba(48, 40, 24, 0.55) !important;
+}
+/* ==========================================================
+   AYAN AI — FIX CHAT MESSAGE CLIPPING
+   DO NOT REMOVE
+========================================================== */
+
+/* Main chat container must be allowed to scroll */
+.main {
+    min-width: 0;
+    min-height: 0;
+}
+
+.chat-area {
+    flex: 1 1 auto !important;
+
+    min-width: 0 !important;
+    min-height: 0 !important;
+
+    height: auto !important;
+
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+
+    align-items: stretch !important;
+}
+
+
+/* ==========================================================
+   MESSAGE BUBBLES
+========================================================== */
+
+.message {
+    flex: 0 0 auto !important;
+
+    height: auto !important;
+    min-height: 0 !important;
+
+    max-height: none !important;
+
+    overflow: visible !important;
+
+    min-width: 0 !important;
+
+    width: fit-content;
+    max-width: 75%;
+
+    white-space: normal !important;
+
+    word-wrap: break-word !important;
+    overflow-wrap: anywhere !important;
+}
+
+
+/* ==========================================================
+   AI MESSAGE
+========================================================== */
+
+.message.ai {
+    align-self: flex-start !important;
+
+    height: auto !important;
+    max-height: none !important;
+
+    overflow: visible !important;
+}
+
+
+/* ==========================================================
+   USER MESSAGE
+========================================================== */
+
+.message.user {
+    align-self: flex-end !important;
+
+    height: auto !important;
+    max-height: none !important;
+
+    overflow: visible !important;
+}
+
+
+/* ==========================================================
+   MARKDOWN CONTENT
+========================================================== */
+
+.markdown-body {
+    display: block !important;
+
+    height: auto !important;
+    max-height: none !important;
+
+    overflow: visible !important;
+
+    white-space: normal !important;
+
+    word-wrap: break-word !important;
+    overflow-wrap: anywhere !important;
+}
+
+
+/* Paragraphs */
+.markdown-body p {
+    display: block !important;
+
+    height: auto !important;
+
+    margin-top: 8px;
+    margin-bottom: 8px;
+
+    line-height: 1.6;
+}
+
+
+/* Headings */
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4 {
+    height: auto !important;
+
+    max-height: none !important;
+
+    overflow: visible !important;
+
+    margin-top: 16px;
+    margin-bottom: 10px;
+}
+
+
+/* Lists */
+.markdown-body ul,
+.markdown-body ol {
+    height: auto !important;
+
+    max-height: none !important;
+
+    overflow: visible !important;
+
+    padding-left: 22px;
+}
+
+
+/* ==========================================================
+   CODE BLOCKS
+========================================================== */
+
+.markdown-body pre {
+    max-height: none !important;
+
+    height: auto !important;
+
+    overflow-x: auto !important;
+    overflow-y: visible !important;
+
+    white-space: pre !important;
+
+    margin: 12px 0;
+}
+
+
+/* ==========================================================
+   CHAT SCROLLBAR
+========================================================== */
+
+.chat-area::-webkit-scrollbar {
+    width: 7px;
+}
+
+.chat-area::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.chat-area::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.12);
+    border-radius: 20px;
+}
+
+.chat-area::-webkit-scrollbar-thumb:hover {
+    background: rgba(241,230,208,0.25);
+}
+
+
+/* ==========================================================
+   IMPORTANT:
+   PREVENT FLEX ITEMS FROM COLLAPSING
+========================================================== */
+
+.chat-area > .message {
+    flex-shrink: 0 !important;
+}
+/* ==========================================================
+   AYAN AI — PREMIUM VOICE BUTTON
+========================================================== */
+
+#voiceBtn {
+    width: 58px;
+    min-width: 58px;
+    height: 58px;
+
+    border-radius: 16px;
+
+    border: 1px solid rgba(216,185,120,0.22);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,0.07),
+            rgba(216,185,120,0.04)
+        );
+
+    color: #e8dcc5;
+
+    cursor: pointer;
+
+    font-size: 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition:
+        transform 0.25s ease,
+        background 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
+}
+
+#voiceBtn:hover {
+    transform: translateY(-2px);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(241,230,208,0.14),
+            rgba(216,185,120,0.08)
+        );
+
+    border-color:
+        rgba(216,185,120,0.42);
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,0.3),
+        0 0 18px rgba(216,185,120,0.08);
+}
+
+#voiceBtn:active {
+    transform: scale(0.94);
+}
+
+
+/* Listening state */
+
+#voiceBtn.listening {
+    background:
+        linear-gradient(
+            145deg,
+            #f1dfb6,
+            #cda85d
+        );
+
+    color: #17130d;
+
+    border-color:
+        rgba(255,240,200,0.8);
+
+    box-shadow:
+        0 0 0 5px rgba(216,185,120,0.08),
+        0 0 30px rgba(216,185,120,0.20);
+
+    animation:
+        voicePulse 1.2s ease-in-out infinite;
+}
+
+@keyframes voicePulse {
+
+    0%, 100% {
+        box-shadow:
+            0 0 0 4px rgba(216,185,120,0.06),
+            0 0 18px rgba(216,185,120,0.12);
+    }
+
+    50% {
+        box-shadow:
+            0 0 0 9px rgba(216,185,120,0.025),
+            0 0 35px rgba(216,185,120,0.22);
+    }
+}
+/* ==========================================================
+   VOICE BUTTON
+========================================================== */
+
+#voiceBtn {
+    width: 58px;
+    min-width: 58px;
+    height: 58px;
+
+    border: 1px solid rgba(255,255,255,0.12);
+
+    border-radius: 16px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,0.10),
+            rgba(255,255,255,0.04)
+        );
+
+    color: #f5ead2;
+
+    cursor: pointer;
+
+    font-size: 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition:
+        transform .2s ease,
+        background .2s ease,
+        box-shadow .2s ease;
+}
+
+
+#voiceBtn:hover {
+
+    transform: translateY(-2px);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,0.16),
+            rgba(255,255,255,0.06)
+        );
+
+    box-shadow:
+        0 8px 22px rgba(0,0,0,.25);
+}
+
+
+/* While listening */
+
+#voiceBtn.listening {
+
+    background:
+        linear-gradient(
+            145deg,
+            #d6b56a,
+            #a98232
+        );
+
+    color: #080808;
+
+    box-shadow:
+        0 0 20px rgba(214,181,106,.35),
+        0 0 45px rgba(214,181,106,.15);
+
+    animation:
+        voicePulse 1.4s ease-in-out infinite;
+}
+
+
+@keyframes voicePulse {
+
+    0%, 100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.06);
+    }
+
+}
+.generated-image {
+    display: block;
+    width: min(700px, 100%);
+    max-height: 700px;
+    object-fit: contain;
+    margin-top: 14px;
+    border-radius: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.5);
+    animation: imageReveal 0.6s ease;
+}
+
+@keyframes imageReveal {
+    from {
+        opacity: 0;
+        transform: translateY(15px) scale(0.97);
+        filter: blur(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+    }
+}

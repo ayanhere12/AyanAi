@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Ayan AI</title>
+
+
+    <!-- =================================================
+         CSS
+    ================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="/static/css/style.css"
+    >
+
+
+    <!-- =================================================
+         HIGHLIGHT.JS
+    ================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css"
+    >
+
+
+    <!-- =================================================
+         MARKED.JS
+    ================================================== -->
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/marked/marked.min.js">
+    </script>
+
+
+    <!-- =================================================
+         HIGHLIGHT.JS
+    ================================================== -->
+
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js">
+    </script>
+
+
+    <!-- =================================================
+         AYAN AI JS
+    ================================================== -->
+
+    <script
+        src="/static/js/script.js"
+        defer>
+    </script>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     APP
+====================================================== -->
+
+<div class="app">
+
+
+    <!-- =================================================
+         SIDEBAR
+    ================================================== -->
+
+    <aside class="sidebar">
+
+
+        <!-- LOGO -->
+
+        <h2 class="logo">
+            🤖 Ayan AI
+        </h2>
+
+
+        <!-- NEW CHAT -->
+
+        <button
+            type="button"
+            class="new-chat"
+            id="newChat"
+        >
+            + New Chat
+        </button>
+
+
+        <!-- CHAT LIST -->
+
+        <div
+            class="menu"
+            id="chatList"
+        ></div>
+
+
+        <!-- DIVIDER -->
+
+        <hr>
+
+
+        <!-- BOTTOM MENU -->
+
+        <div class="bottom-menu">
+
+            <div class="menu-item">
+                📂 Documents
+            </div>
+
+            <div class="menu-item">
+                🧠 Memory
+            </div>
+
+            <div class="menu-item">
+                🤖 Models
+            </div>
+
+            <div class="menu-item">
+                ⚙️ Settings
+            </div>
+
+        </div>
+
+
+    </aside>
+
+
+
+    <!-- =================================================
+         MAIN
+    ================================================== -->
+
+    <main class="main">
+
+
+        <!-- =================================================
+             CHAT AREA
+        ================================================== -->
+
+        <div
+            class="chat-area"
+            id="chatArea"
+        >
+
+
+            <!-- WELCOME SCREEN -->
+
+            <div class="welcome">
+
+
+                <h1>
+                    🤖 Welcome to Ayan AI
+                </h1>
+
+
+                <p>
+                    Your intelligent AI assistant.
+                </p>
+
+
+                <!-- SUGGESTIONS -->
+
+                <div class="suggestions">
+
+
+                    <button
+                        type="button"
+                        data-prompt="Help me write clean, efficient code for: "
+                    >
+                        💻 Write Code
+                    </button>
+
+
+                    <button
+                        type="button"
+                        data-prompt="Summarize the following text clearly and briefly: "
+                    >
+                        📄 Summarize
+                    </button>
+
+
+                    <button
+                        type="button"
+                        data-prompt="Explain the following concept in a simple, easy-to-understand way: "
+                    >
+                        🧠 Explain
+                    </button>
+
+
+                    <button
+                        type="button"
+                        data-prompt="Research and give me a clear, structured explanation about: "
+                    >
+                        🌐 Research
+                    </button>
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+            
+
+        <!-- =================================================
+             AYAN ORB
+        ================================================== -->
+
+        <div
+            class="ayan-orb"
+            id="ayanOrb"
+        >
+
+            <div class="ayan-orb-core"></div>
+
+            <span>
+                AYAN
+            </span>
+
+        </div>
+
+
+
+        <!-- =================================================
+             INPUT BAR
+        ================================================== -->
+
+        <div class="input-bar">
+
+
+            <!-- TEXT INPUT -->
+
+            <input
+                type="text"
+                id="message"
+                placeholder="Ask anything..."
+                autocomplete="off"
+            >
+
+
+            <!-- VOICE INPUT -->
+
+            <button
+                type="button"
+                id="voiceBtn"
+                title="Voice input"
+                aria-label="Voice input"
+            >
+                🎙️
+            </button>
+
+
+            <!-- SEND -->
+
+            <button
+                type="button"
+                id="sendBtn"
+                title="Send message"
+                aria-label="Send message"
+            >
+                ➜
+            </button>
+
+
+        </div>
+
+
+    </main>
+
+
+</div>
+
+
+</body>
+
+</html>
