@@ -14,7 +14,6 @@ let ayanOrb = null;
 ========================================================== */
 
 function orbThinking() {
-
     if (!ayanOrb) return;
 
     ayanOrb.classList.remove("responding");
@@ -23,7 +22,6 @@ function orbThinking() {
 
 
 function orbResponding() {
-
     if (!ayanOrb) return;
 
     ayanOrb.classList.remove("thinking");
@@ -32,7 +30,6 @@ function orbResponding() {
 
 
 function orbIdle() {
-
     if (!ayanOrb) return;
 
     ayanOrb.classList.remove(
@@ -61,19 +58,20 @@ async function sendMessage() {
         return;
     }
 
-
     const message =
         input.value.trim();
 
-
-    if (!message) return;
-
+    if (!message) {
+        return;
+    }
 
     lastUserMessage =
         message;
 
 
-    /* Remove welcome */
+    /* ======================================================
+       REMOVE WELCOME
+    ======================================================= */
 
     const welcome =
         chatArea.querySelector(".welcome");
@@ -93,28 +91,27 @@ async function sendMessage() {
     userBubble.className =
         "message user";
 
-
     const userTime =
         new Date().toLocaleTimeString([], {
             hour: "2-digit",
             minute: "2-digit"
         });
 
-
     userBubble.innerHTML = `
         <strong>You</strong>
+
         <span class="message-time">
             ${userTime}
         </span>
+
         <br>
+
         ${escapeHtml(message)}
     `;
-
 
     chatArea.appendChild(
         userBubble
     );
-
 
     input.value = "";
 
@@ -126,17 +123,14 @@ async function sendMessage() {
     const aiBubble =
         document.createElement("div");
 
-
     aiBubble.className =
         "message ai";
-
 
     const aiTime =
         new Date().toLocaleTimeString([], {
             hour: "2-digit",
             minute: "2-digit"
         });
-
 
     aiBubble.innerHTML = `
         <strong>Ayan AI</strong>
@@ -160,24 +154,28 @@ async function sendMessage() {
         <div class="message-actions">
 
             <button
+                type="button"
                 class="copy-btn"
                 title="Copy">
                 📋
             </button>
 
             <button
+                type="button"
                 class="regenerate-btn"
                 title="Regenerate">
                 ↻
             </button>
 
             <button
+                type="button"
                 class="like-btn"
                 title="Like">
                 👍
             </button>
 
             <button
+                type="button"
                 class="dislike-btn"
                 title="Dislike">
                 👎
@@ -185,7 +183,6 @@ async function sendMessage() {
 
         </div>
     `;
-
 
     chatArea.appendChild(
         aiBubble
@@ -197,19 +194,55 @@ async function sendMessage() {
             ".markdown-body"
         );
 
-
     chatArea.scrollTop =
         chatArea.scrollHeight;
 
 
     /* ======================================================
-       STREAM
+       START THINKING
     ======================================================= */
 
     orbThinking();
 
 
+    /* ======================================================
+       MAKE SURE A CHAT EXISTS
+    ======================================================= */
+
     try {
+
+        if (!currentChat) {
+
+            const newChatResponse =
+                await fetch(
+                    "/new_chat",
+                    {
+                        method: "POST"
+                    }
+                );
+
+            if (!newChatResponse.ok) {
+
+                throw new Error(
+                    "Unable to create chat."
+                );
+
+            }
+
+            const newChatData =
+                await newChatResponse.json();
+
+            currentChat =
+                newChatData.chat_id;
+
+            await loadChats();
+
+        }
+
+
+        /* ==================================================
+           STREAM FROM BACKEND
+        =================================================== */
 
         const response =
             await fetch(
@@ -223,16 +256,21 @@ async function sendMessage() {
                     },
 
                     body: JSON.stringify({
-                        message: message
+                        message: message,
+                        chat_id: currentChat
                     })
                 }
             );
 
 
+        /* ==================================================
+           STREAMING RESPONSE
+        =================================================== */
+
         if (!response.ok) {
 
             throw new Error(
-                `Server Error: ${response.status}`
+                `Chat request failed: ${response.status}`
             );
 
         }
@@ -247,13 +285,15 @@ async function sendMessage() {
         }
 
 
+        /* ==================================================
+           READ STREAM
+        =================================================== */
+
         const reader =
             response.body.getReader();
 
-
         const decoder =
             new TextDecoder("utf-8");
-
 
         let fullReply = "";
 
@@ -263,14 +303,17 @@ async function sendMessage() {
             const {
                 done,
                 value
-            } =
-                await reader.read();
+            } = await reader.read();
 
 
-            if (done) break;
+            if (done) {
+                break;
+            }
 
 
-            if (!value) continue;
+            if (!value) {
+                continue;
+            }
 
 
             const chunk =
@@ -282,23 +325,25 @@ async function sendMessage() {
                 );
 
 
-            if (!chunk) continue;
+            if (!chunk) {
+                continue;
+            }
 
 
             orbResponding();
 
 
-            fullReply += chunk;
+            fullReply +=
+                chunk;
 
-
-            /*
-             * IMPORTANT:
-             * This is the source used by Copy.
-             */
 
             aiBubble.dataset.reply =
                 fullReply;
 
+
+            /* ==============================================
+               LIVE MARKDOWN
+            =============================================== */
 
             if (markdown) {
 
@@ -316,19 +361,21 @@ async function sendMessage() {
         }
 
 
-        /* Flush decoder */
+        /* ==================================================
+           FLUSH DECODER
+        =================================================== */
 
         fullReply +=
             decoder.decode();
 
 
-        /*
-         * Final reply.
-         */
-
         aiBubble.dataset.reply =
             fullReply;
 
+
+        /* ==================================================
+           FINAL MARKDOWN
+        =================================================== */
 
         if (
             markdown &&
@@ -354,15 +401,18 @@ async function sendMessage() {
         }
 
 
+        /* ==================================================
+           CODE HIGHLIGHT
+        =================================================== */
+
         highlightCode(
             aiBubble
         );
 
 
-        /*
-         * Attach actions ONLY AFTER
-         * the final reply exists.
-         */
+        /* ==================================================
+           MESSAGE ACTIONS
+        =================================================== */
 
         addMessageActions(
             aiBubble
@@ -376,13 +426,30 @@ async function sendMessage() {
         orbIdle();
 
 
-        /*
-         * Refresh sidebar.
-         */
+        /* ==================================================
+           REFRESH CHAT SIDEBAR
 
-        await loadChats();
+           Sidebar failure must NOT turn a successful
+           AI response into "Connection Error".
+        =================================================== */
+
+        try {
+
+            await loadChats();
+
+        }
+
+        catch (sidebarError) {
+
+            console.error(
+                "Sidebar refresh error:",
+                sidebarError
+            );
+
+        }
 
     }
+
 
     catch (error) {
 
@@ -408,15 +475,11 @@ async function sendMessage() {
     }
 
 }
-
-
 /* ==========================================================
    MESSAGE ACTIONS
 ========================================================== */
 
-function addMessageActions(
-    aiBubble
-) {
+function addMessageActions(aiBubble) {
 
     if (!aiBubble) return;
 
@@ -456,27 +519,19 @@ function addMessageActions(
 
                 try {
 
-                    /*
-                     * ALWAYS read the CURRENT
-                     * reply from the bubble.
-                     */
-
                     const reply =
                         aiBubble.dataset.reply ||
                         "";
 
 
                     if (!reply.trim()) {
-
                         return;
-
                     }
 
 
-                    await navigator.clipboard
-                        .writeText(
-                            reply
-                        );
+                    await navigator.clipboard.writeText(
+                        reply
+                    );
 
 
                     copyBtn.textContent =
@@ -572,10 +627,8 @@ function addMessageActions(
                 regenBtn.disabled =
                     true;
 
-
                 regenBtn.textContent =
                     "⏳";
-
 
                 orbThinking();
 
@@ -591,6 +644,12 @@ function addMessageActions(
                             }
                         );
 
+
+                    /* ======================================
+                       /regenerate ALSO returns a STREAM.
+
+                       DO NOT use response.json().
+                    ======================================= */
 
                     if (!response.ok) {
 
@@ -611,8 +670,7 @@ function addMessageActions(
 
 
                     const reader =
-                        response.body
-                            .getReader();
+                        response.body.getReader();
 
 
                     const decoder =
@@ -631,6 +689,10 @@ function addMessageActions(
                         );
 
 
+                    /* ======================================
+                       STREAM REGENERATED RESPONSE
+                    ======================================= */
+
                     while (true) {
 
                         const {
@@ -640,10 +702,14 @@ function addMessageActions(
                             await reader.read();
 
 
-                        if (done) break;
+                        if (done) {
+                            break;
+                        }
 
 
-                        if (!value) continue;
+                        if (!value) {
+                            continue;
+                        }
 
 
                         const chunk =
@@ -655,7 +721,9 @@ function addMessageActions(
                             );
 
 
-                        if (!chunk) continue;
+                        if (!chunk) {
+                            continue;
+                        }
 
 
                         orbResponding();
@@ -665,10 +733,9 @@ function addMessageActions(
                             chunk;
 
 
-                        /*
-                         * CRITICAL:
-                         * Update dataset immediately.
-                         */
+                        /* ==================================
+                           UPDATE CURRENT REPLY
+                        =================================== */
 
                         aiBubble.dataset.reply =
                             newReply;
@@ -700,19 +767,21 @@ function addMessageActions(
                     }
 
 
-                    /* Flush */
+                    /* ======================================
+                       FLUSH DECODER
+                    ======================================= */
 
                     newReply +=
                         decoder.decode();
 
 
-                    /*
-                     * FINAL regenerated reply.
-                     */
-
                     aiBubble.dataset.reply =
                         newReply;
 
+
+                    /* ======================================
+                       FINAL RESPONSE
+                    ======================================= */
 
                     if (markdown) {
 
@@ -726,6 +795,7 @@ function addMessageActions(
                                 );
 
                         }
+
                         else {
 
                             markdown.innerHTML =
@@ -752,6 +822,7 @@ function addMessageActions(
 
                 }
 
+
                 catch (error) {
 
                     console.error(
@@ -767,6 +838,7 @@ function addMessageActions(
                     orbIdle();
 
                 }
+
 
                 finally {
 
@@ -794,7 +866,9 @@ async function loadChats() {
         );
 
 
-    if (!chatList) return;
+    if (!chatList) {
+        return;
+    }
 
 
     try {
@@ -818,11 +892,23 @@ async function loadChats() {
             await response.json();
 
 
+        /* ==============================================
+           IMPORTANT
+
+           Keep global chat array updated.
+        =============================================== */
+
+        chats =
+            Array.isArray(chatData)
+                ? chatData
+                : [];
+
+
         chatList.innerHTML =
             "";
 
 
-        chatData.forEach(
+        chats.forEach(
             chat => {
 
                 const item =
@@ -837,12 +923,17 @@ async function loadChats() {
 
                 item.innerHTML = `
                     <span>
-                        💬 ${escapeHtml(chat.title)}
+                        💬 ${escapeHtml(
+                            chat.title
+                        )}
                     </span>
 
                     <button
+                        type="button"
                         class="delete-chat"
-                        data-id="${chat.id}">
+                        data-id="${escapeHtml(
+                            chat.id
+                        )}">
                         🗑️
                     </button>
                 `;
@@ -900,6 +991,17 @@ async function loadChats() {
                                 }
 
 
+                                if (
+                                    currentChat ===
+                                    chat.id
+                                ) {
+
+                                    currentChat =
+                                        null;
+
+                                }
+
+
                                 await loadChats();
 
                             }
@@ -943,9 +1045,7 @@ async function loadChats() {
    OPEN CHAT
 ========================================================== */
 
-async function openChat(
-    chatId
-) {
+async function openChat(chatId) {
 
     const chatArea =
         document.getElementById(
@@ -953,7 +1053,9 @@ async function openChat(
         );
 
 
-    if (!chatArea) return;
+    if (!chatArea) {
+        return;
+    }
 
 
     try {
@@ -988,9 +1090,9 @@ async function openChat(
         }
 
 
-        /*
-         * Clear ONLY the chat area.
-         */
+        currentChat =
+            chatId;
+
 
         chatArea.innerHTML =
             "";
@@ -1004,6 +1106,10 @@ async function openChat(
                         "div"
                     );
 
+
+                /* =========================================
+                   USER MESSAGE
+                ========================================== */
 
                 if (
                     msg.role === "user"
@@ -1022,6 +1128,11 @@ async function openChat(
                     `;
 
                 }
+
+
+                /* =========================================
+                   AI MESSAGE
+                ========================================== */
 
                 else {
 
@@ -1043,24 +1154,28 @@ async function openChat(
                         <div class="message-actions">
 
                             <button
+                                type="button"
                                 class="copy-btn"
                                 title="Copy">
                                 📋
                             </button>
 
                             <button
+                                type="button"
                                 class="regenerate-btn"
                                 title="Regenerate">
                                 ↻
                             </button>
 
                             <button
+                                type="button"
                                 class="like-btn"
                                 title="Like">
                                 👍
                             </button>
 
                             <button
+                                type="button"
                                 class="dislike-btn"
                                 title="Dislike">
                                 👎
@@ -1097,8 +1212,8 @@ async function openChat(
         chatArea.scrollTop =
             chatArea.scrollHeight;
 
-
     }
+
 
     catch (error) {
 
@@ -1139,6 +1254,20 @@ async function newChat() {
         }
 
 
+        /* ==============================================
+           IMPORTANT
+
+           /new_chat DOES return JSON.
+        =============================================== */
+
+        const chatData =
+            await response.json();
+
+
+        currentChat =
+            chatData.chat_id;
+
+
         await loadChats();
 
 
@@ -1148,14 +1277,10 @@ async function newChat() {
             );
 
 
-        if (!chatArea) return;
+        if (!chatArea) {
+            return;
+        }
 
-
-        /*
-         * IMPORTANT:
-         * Only replace the INSIDE of chatArea.
-         * Do not replace .main.
-         */
 
         chatArea.innerHTML = `
             <div class="welcome">
@@ -1170,19 +1295,27 @@ async function newChat() {
 
                 <div class="suggestions">
 
-                    <button type="button">
+                    <button
+                        type="button"
+                        data-prompt="Help me write clean, efficient code for: ">
                         💻 Write Code
                     </button>
 
-                    <button type="button">
+                    <button
+                        type="button"
+                        data-prompt="Summarize the following text clearly and briefly: ">
                         📄 Summarize
                     </button>
 
-                    <button type="button">
+                    <button
+                        type="button"
+                        data-prompt="Explain the following concept in a simple, easy-to-understand way: ">
                         🧠 Explain
                     </button>
 
-                    <button type="button">
+                    <button
+                        type="button"
+                        data-prompt="Research and give me a clear, structured explanation about: ">
                         🌐 Research
                     </button>
 
@@ -1190,6 +1323,16 @@ async function newChat() {
 
             </div>
         `;
+
+
+        /* ==============================================
+           RECONNECT SUGGESTION BUTTONS
+
+           The welcome HTML was recreated dynamically,
+           so the original listeners no longer exist.
+        =============================================== */
+
+        setupSuggestionButtons();
 
 
         const input =
@@ -1211,6 +1354,7 @@ async function newChat() {
         orbIdle();
 
     }
+
 
     catch (error) {
 
@@ -1247,7 +1391,9 @@ async function sendMessageStream() {
         }
 
 
-        if (!response.body) return;
+        if (!response.body) {
+            return;
+        }
 
 
         const reader =
@@ -1271,7 +1417,9 @@ async function sendMessageStream() {
                 await reader.read();
 
 
-            if (done) break;
+            if (done) {
+                break;
+            }
 
 
             result +=
@@ -1290,6 +1438,7 @@ async function sendMessageStream() {
         }
 
     }
+
 
     catch (error) {
 
@@ -1358,11 +1507,11 @@ function escapeHtml(value) {
    HIGHLIGHT CODE
 ========================================================== */
 
-function highlightCode(
-    container
-) {
+function highlightCode(container) {
 
-    if (!container) return;
+    if (!container) {
+        return;
+    }
 
 
     container
@@ -1396,6 +1545,78 @@ function highlightCode(
 
 
 /* ==========================================================
+   SUGGESTION BUTTONS
+========================================================== */
+
+function setupSuggestionButtons() {
+
+    const input =
+        document.getElementById(
+            "message"
+        );
+
+
+    const suggestionButtons =
+        document.querySelectorAll(
+            ".suggestions button"
+        );
+
+
+    suggestionButtons.forEach(
+        button => {
+
+            /* Avoid duplicate listeners */
+
+            if (
+                button.dataset.ayanBound ===
+                "true"
+            ) {
+
+                return;
+
+            }
+
+
+            button.dataset.ayanBound =
+                "true";
+
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    const prompt =
+                        button.dataset.prompt ||
+                        "";
+
+
+                    if (!input) {
+                        return;
+                    }
+
+
+                    input.value =
+                        prompt;
+
+
+                    input.focus();
+
+
+                    input.setSelectionRange(
+                        input.value.length,
+                        input.value.length
+                    );
+
+                }
+            );
+
+        }
+    );
+
+}
+
+
+/* ==========================================================
    PAGE LOAD
 ========================================================== */
 
@@ -1403,15 +1624,19 @@ document.addEventListener(
     "DOMContentLoaded",
     () => {
 
-        /*
-         * Get orb AFTER DOM exists.
-         */
+        /* ==============================================
+           ORB
+        =============================================== */
 
         ayanOrb =
             document.getElementById(
                 "ayanOrb"
             );
 
+
+        /* ==============================================
+           BUTTONS
+        =============================================== */
 
         const sendBtn =
             document.getElementById(
@@ -1431,6 +1656,10 @@ document.addEventListener(
             );
 
 
+        /* ==============================================
+           SEND BUTTON
+        =============================================== */
+
         if (sendBtn) {
 
             sendBtn.addEventListener(
@@ -1440,6 +1669,10 @@ document.addEventListener(
 
         }
 
+
+        /* ==============================================
+           NEW CHAT BUTTON
+        =============================================== */
 
         if (newChatBtn) {
 
@@ -1451,6 +1684,10 @@ document.addEventListener(
         }
 
 
+        /* ==============================================
+           INPUT
+        =============================================== */
+
         if (input) {
 
             input.focus();
@@ -1458,294 +1695,347 @@ document.addEventListener(
         }
 
 
-        loadChats();
+        /* ==============================================
+           SUGGESTIONS
+        =============================================== */
+
+        setupSuggestionButtons();
+
+
+        /* ==============================================
+           LOAD CHATS
+        =============================================== */
+
+        loadChats()
+            .then(
+                async () => {
+
+                    if (
+                        !currentChat &&
+                        chats.length > 0
+                    ) {
+
+                        await openChat(
+                            chats[0].id
+                        );
+
+                    }
+
+                    else if (
+                        !currentChat &&
+                        chats.length === 0
+                    ) {
+
+                        await newChat();
+
+                    }
+
+                }
+            );
 
     }
 );
-/* ==========================================================
-   SUGGESTION BUTTONS
-========================================================== */
 
-document.addEventListener("DOMContentLoaded", () => {
 
-    const input = document.getElementById("message");
-    const suggestionButtons =
-        document.querySelectorAll(".suggestions button");
-
-    suggestionButtons.forEach(button => {
-
-        button.addEventListener("click", () => {
-
-            const prompt =
-                button.dataset.prompt || "";
-
-            if (!input) return;
-
-            input.value = prompt;
-
-            input.focus();
-
-            // Put cursor at the end
-            input.setSelectionRange(
-                input.value.length,
-                input.value.length
-            );
-        });
-
-    });
-
-});
 /* ==========================================================
    AYAN AI VOICE INPUT
-   More tolerant of short pauses
 ========================================================== */
-
-const voiceBtn = document.getElementById("voiceBtn");
-const messageInput = document.getElementById("message");
 
 let recognition = null;
 let isListening = false;
 let finalTranscript = "";
 
-const SpeechRecognition =
-    window.SpeechRecognition ||
-    window.webkitSpeechRecognition;
 
-if (SpeechRecognition && voiceBtn && messageInput) {
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
 
-    recognition = new SpeechRecognition();
-
-    // Keep listening through short pauses
-    recognition.continuous = true;
-
-    // Show interim words while speaking
-    recognition.interimResults = true;
-
-    // Change this if you want another language
-    recognition.lang = "en-US";
-
-
-    /* ------------------------------------------------------
-       START
-    ------------------------------------------------------ */
-
-    voiceBtn.addEventListener("click", () => {
-
-        if (isListening) {
-
-            stopVoice();
-
-        } else {
-
-            startVoice();
-
-        }
-
-    });
-
-
-    function startVoice() {
-
-        try {
-
-            finalTranscript = "";
-
-            recognition.start();
-
-        }
-
-        catch (error) {
-
-            console.log(
-                "Voice already running:",
-                error
+        const voiceBtn =
+            document.getElementById(
+                "voiceBtn"
             );
 
-        }
 
-    }
-
-
-    /* ------------------------------------------------------
-       SPEECH STARTED
-    ------------------------------------------------------ */
-
-    recognition.onstart = () => {
-
-        isListening = true;
-
-        voiceBtn.classList.add("listening");
-
-        voiceBtn.textContent = "🔴";
-
-        voiceBtn.title = "Stop voice input";
-
-    };
+        const messageInput =
+            document.getElementById(
+                "message"
+            );
 
 
-    /* ------------------------------------------------------
-       SPEECH RESULT
-    ------------------------------------------------------ */
+        const SpeechRecognition =
+            window.SpeechRecognition ||
+            window.webkitSpeechRecognition;
 
-    recognition.onresult = (event) => {
 
-        let interimTranscript = "";
-
-        for (
-            let i = event.resultIndex;
-            i < event.results.length;
-            i++
+        if (
+            !SpeechRecognition ||
+            !voiceBtn ||
+            !messageInput
         ) {
 
-            const transcript =
-                event.results[i][0].transcript;
+            console.log(
+                "Speech recognition is not supported by this browser."
+            );
 
-            if (event.results[i].isFinal) {
 
-                finalTranscript += transcript + " ";
+            if (voiceBtn) {
 
-            } else {
+                voiceBtn.disabled =
+                    true;
 
-                interimTranscript += transcript;
+                voiceBtn.title =
+                    "Voice input is not supported in this browser";
+
+            }
+
+            return;
+
+        }
+
+
+        recognition =
+            new SpeechRecognition();
+
+
+        recognition.continuous =
+            true;
+
+
+        recognition.interimResults =
+            true;
+
+
+        recognition.lang =
+            "en-US";
+
+
+        /* ==================================================
+           START / STOP BUTTON
+        =================================================== */
+
+        voiceBtn.addEventListener(
+            "click",
+            () => {
+
+                if (isListening) {
+
+                    stopVoice();
+
+                }
+
+                else {
+
+                    startVoice();
+
+                }
+
+            }
+        );
+
+
+        /* ==================================================
+           START
+        =================================================== */
+
+        function startVoice() {
+
+            try {
+
+                finalTranscript =
+                    "";
+
+                recognition.start();
+
+            }
+
+            catch (error) {
+
+                console.log(
+                    "Voice already running:",
+                    error
+                );
 
             }
 
         }
 
 
-        /*
-         * Show both confirmed and currently-heard text.
-         */
+        /* ==================================================
+           SPEECH STARTED
+        =================================================== */
 
-        messageInput.value =
-            finalTranscript +
-            interimTranscript;
+        recognition.onstart =
+            () => {
 
-    };
+                isListening =
+                    true;
 
 
-    /* ------------------------------------------------------
-       IMPORTANT:
-       Browser may automatically stop recognition after
-       a short silence.
-    ------------------------------------------------------ */
+                voiceBtn.classList.add(
+                    "listening"
+                );
 
-    recognition.onend = () => {
 
-        /*
-         * If the user is still in listening mode,
-         * immediately start recognition again.
-         *
-         * This makes short pauses much less noticeable.
-         */
+                voiceBtn.textContent =
+                    "🔴";
 
-        if (isListening) {
 
-            setTimeout(() => {
+                voiceBtn.title =
+                    "Stop voice input";
 
-                try {
+            };
 
-                    recognition.start();
+
+        /* ==================================================
+           SPEECH RESULT
+        =================================================== */
+
+        recognition.onresult =
+            event => {
+
+                let interimTranscript =
+                    "";
+
+
+                for (
+                    let i = event.resultIndex;
+                    i < event.results.length;
+                    i++
+                ) {
+
+                    const transcript =
+                        event.results[i][0]
+                            .transcript;
+
+
+                    if (
+                        event.results[i]
+                            .isFinal
+                    ) {
+
+                        finalTranscript +=
+                            transcript + " ";
+
+                    }
+
+                    else {
+
+                        interimTranscript +=
+                            transcript;
+
+                    }
 
                 }
 
-                catch (error) {
 
-                    console.log(
-                        "Voice restart:",
-                        error
+                messageInput.value =
+                    finalTranscript +
+                    interimTranscript;
+
+            };
+
+
+        /* ==================================================
+           SPEECH END
+        =================================================== */
+
+        recognition.onend =
+            () => {
+
+                if (isListening) {
+
+                    setTimeout(
+                        () => {
+
+                            try {
+
+                                recognition.start();
+
+                            }
+
+                            catch (error) {
+
+                                console.log(
+                                    "Voice restart:",
+                                    error
+                                );
+
+                            }
+
+                        },
+                        150
                     );
 
                 }
 
-            }, 150);
-
-        }
-
-    };
+            };
 
 
-    /* ------------------------------------------------------
-       ERROR
-    ------------------------------------------------------ */
+        /* ==================================================
+           ERROR
+        =================================================== */
 
-    recognition.onerror = (event) => {
+        recognition.onerror =
+            event => {
 
-        console.log(
-            "Voice recognition:",
-            event.error
-        );
-
-
-        /*
-         * Ignore normal temporary errors.
-         */
-
-        if (
-            event.error === "no-speech" ||
-            event.error === "audio-capture"
-        ) {
-
-            return;
-
-        }
-
-    };
+                console.log(
+                    "Voice recognition:",
+                    event.error
+                );
 
 
-    /* ------------------------------------------------------
-       STOP
-    ------------------------------------------------------ */
+                if (
+                    event.error ===
+                        "no-speech" ||
+                    event.error ===
+                        "audio-capture"
+                ) {
 
-    function stopVoice() {
+                    return;
 
-        isListening = false;
+                }
 
-        try {
+            };
 
-            recognition.stop();
 
-        }
+        /* ==================================================
+           STOP
+        =================================================== */
 
-        catch (error) {
+        function stopVoice() {
 
-            console.log(
-                "Voice stop:",
-                error
+            isListening =
+                false;
+
+
+            try {
+
+                recognition.stop();
+
+            }
+
+            catch (error) {
+
+                console.log(
+                    "Voice stop:",
+                    error
+                );
+
+            }
+
+
+            voiceBtn.classList.remove(
+                "listening"
             );
 
+
+            voiceBtn.textContent =
+                "🎙️";
+
+
+            voiceBtn.title =
+                "Voice input";
+
         }
-
-        voiceBtn.classList.remove(
-            "listening"
-        );
-
-        voiceBtn.textContent = "🎙️";
-
-        voiceBtn.title = "Voice input";
-
     }
-
-}
-
-
-/* ----------------------------------------------------------
-   BROWSER DOES NOT SUPPORT SPEECH RECOGNITION
----------------------------------------------------------- */
-
-else {
-
-    console.log(
-        "Speech recognition is not supported by this browser."
-    );
-
-    if (voiceBtn) {
-
-        voiceBtn.disabled = true;
-
-        voiceBtn.title =
-            "Voice input is not supported in this browser";
-
-    }
-
-}
+);
